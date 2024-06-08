@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Timetable;
 use Illuminate\Http\Request;
 
 class ManageTimetableController extends Controller
@@ -12,7 +13,7 @@ class ManageTimetableController extends Controller
      */
     public function index()
     {
-        //
+        return view('ManageTimetable.Teacher.TimetableList');
     }
 
     /**
@@ -28,7 +29,18 @@ class ManageTimetableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'equired|max:255',
+            'body' => 'equired',
+        ]);
+    
+        $timetable = new Timetable();
+        $timetable->title = $request->input('title');
+        $timetable->body = $request->input('body');
+        $timetable->save();
+    
+        return redirect()->route('timetables.index')
+            ->with('success', 'Timetable created successfully.');
     }
 
     /**
@@ -36,7 +48,7 @@ class ManageTimetableController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -61,5 +73,15 @@ class ManageTimetableController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function teacherTemplate()
+    {
+        return view('ManageTimetable.Teacher.TeacherTemplate');
+    }
+    public function timetablelist()
+    {
+        $timetables = Timetable::all(); // assuming you have a Timetable model
+        return view('timetablelist', compact('timetables'));
     }
 }

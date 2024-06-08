@@ -9,7 +9,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/parent.css">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/timetable.css">
 </head>
 
 <body style="background-color: #4299FE;">
@@ -36,7 +36,7 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                                 aria-selected="true">Home</button>
                         </li>
@@ -51,7 +51,16 @@
                                 aria-controls="pills-contact" aria-selected="false">Result</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}">Timetable</a>
+                            <div class="dropdown">
+                                <button class="dropbtn">Timetable</button>
+                                <div class="dropdown-content">
+                                  <a href="{{ route('manage.timetable.teacher') }}">Year 1</a>
+                                  <a href="#">Year 2</a>
+                                  <a href="#">Year 3</a>
+                                  <a href="#">Year 4</a>
+                                  <a href="#">Year 5</a>
+                                </div>
+                              </div>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
