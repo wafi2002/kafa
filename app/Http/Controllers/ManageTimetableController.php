@@ -13,7 +13,9 @@ class ManageTimetableController extends Controller
      */
     public function index()
     {
-        return view('ManageTimetable.Teacher.TimetableList');
+        $timetables = Timetable::all();
+
+        return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
     }
 
     /**
@@ -21,7 +23,7 @@ class ManageTimetableController extends Controller
      */
     public function create()
     {
-        //
+        return view('ManageTimetable.Teacher.TimetableList');
     }
 
     /**
@@ -30,16 +32,13 @@ class ManageTimetableController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'equired|max:255',
-            'body' => 'equired',
+            'title' => 'required|max:255',
+            'body' => 'required',
         ]);
-    
-        $timetable = new Timetable();
-        $timetable->title = $request->input('title');
-        $timetable->body = $request->input('body');
-        $timetable->save();
-    
-        return redirect()->route('timetables.index')
+
+        Timetable::create($request->all());
+
+        return redirect()->route('ManageTimetable.Teacher.TimetableList')
             ->with('success', 'Timetable created successfully.');
     }
 
@@ -48,7 +47,9 @@ class ManageTimetableController extends Controller
      */
     public function show(string $id)
     {
-        
+        $timetables = Timetable::find($id);
+
+        return view('ManageTimetable.Teacher.TeacherView', compact('timetables'));
     }
 
     /**
@@ -56,7 +57,9 @@ class ManageTimetableController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $timetables = Timetable::find($id);
+
+        return view('ManageTimetable.KAFAAdmin.TimetableEdit', compact('timetables'));
     }
 
     /**
@@ -64,7 +67,16 @@ class ManageTimetableController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
+
+        $timetables = Timetable::find($id);
+        $timetables->update($request->all());
+
+        return redirect()->route('ManageTimetable.Teacher.TimetableList')
+            ->with('success', 'Timetables updated successfully.');
     }
 
     /**
@@ -72,16 +84,20 @@ class ManageTimetableController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $timetables = Timetable::find($id);
+        $timetables->delete();
+
+        return redirect()->route('posts.index')
+            ->with('success', 'Timetable deleted successfully');
     }
 
-    public function teacherTemplate()
+    public function teacherTemplateTimetable()
     {
         return view('ManageTimetable.Teacher.TeacherTemplate');
     }
     public function timetablelist()
     {
         $timetables = Timetable::all(); // assuming you have a Timetable model
-        return view('timetablelist', compact('timetables'));
+        return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
     }
 }

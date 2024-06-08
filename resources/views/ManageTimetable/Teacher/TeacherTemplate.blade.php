@@ -36,9 +36,7 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Home</button>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('teacher.dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
@@ -54,11 +52,11 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Timetable</button>
                                 <div class="dropdown-content">
-                                  <a href="{{ route('manage.timetable.teacher') }}">Year 1</a>
-                                  <a href="#">Year 2</a>
-                                  <a href="#">Year 3</a>
-                                  <a href="#">Year 4</a>
-                                  <a href="#">Year 5</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 1</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 2</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 3</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 4</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 5</a>
                                 </div>
                               </div>
                         </li>
@@ -96,7 +94,7 @@
     {{-- Content --}}
     <div class="mt-2 ">
         <div class="container">
-            @yield('content')
+            @yield('contentTTimetable')
         </div>
     </div>
     {{-- End Content --}}

@@ -22,5 +22,17 @@ Route::get('MUIP/Dashboard', [ManageRegistrationController::class, 'index'])->na
 Route::get('Parent/Dashboard', [ManageRegistrationController::class, 'index'])->name('parent.dashboard')->middleware('parent');
 Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])->name('teacher.dashboard')->middleware('teacher');
 
-Route::get('/manage/timetable/teacher', ManageTimetableController::class.'@teacherTemplate')->name('manage.timetable.teacher');
-Route::get('/manage/timetable/list', ManageTimetableController::class.'@index')->name('manage.timetable.list');
+Route::get('/manage/timetable/teacher', ManageTimetableController::class.'@teacherTemplateTimetable')->name('manage.timetable.teacher');
+Route::get('/manage/timetable/list', ManageTimetableController::class.'@timetablelist')->name('manage.timetable.list');
+// returns the form for adding a timetable
+Route::get('/manage/timetable/create', ManageTimetableController::class . '@create')->name('manage.timetable.list.create');
+// adds a timetable to the database
+Route::post('/manage/timetable', ManageTimetableController::class .'@store')->name('manage.timetable.list.store');
+// returns a page that shows a full timetable
+Route::get('/manage/timetable/{timetable}', ManageTimetableController::class .'@show')->name('manage.timetable.list.show');
+// returns the form for editing a timetable
+Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::class .'@edit')->name('manage.timetable.list.edit');
+// updates a timetable
+Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@update')->name('manage.timetable.list.update');
+// deletes a timetable
+Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@destroy')->name('manage.timetable.list.destroy');
