@@ -8,6 +8,7 @@ use App\Models\Activity;
 use App\Models\PostMortem;
 use App\Models\Student;
 use App\Models\Result;
+use App\Models\Subject;
 use Carbon\Carbon;
 
 class ManageReportController extends Controller
@@ -131,15 +132,11 @@ class ManageReportController extends Controller
         // Validate the form data
         $validatedData = $request->validate([
             'postDescription' => 'required|string',
-            'postDate' => 'required|date',
-            'postStatus' => 'required|string',
         ]);
 
         // Find the post-mortem
         $postMortem = PostMortem::findOrFail($postMortemId);
         $postMortem->postDescription = $validatedData['postDescription'];
-        $postMortem->postDate = $validatedData['postDate'];
-        $postMortem->postStatus = $validatedData['postStatus'];
         $postMortem->save();
 
         // Redirect back to the post-mortem view page with success message
@@ -169,27 +166,28 @@ class ManageReportController extends Controller
         return view('ManageReportActivity.MUIP Admin.ViewCompletePostMortem', compact('activity'));
     }
 
-    public function showYears(){
+    public function showYears()
+    {
 
         $years = Student::select('studentYear')->distinct()->orderBy('studentYear')->pluck('studentYear');
 
         return view('ManageReportActivity.MUIP Admin.ViewAcademicLevelOption', compact('years'));
-
     }
 
-    public function showStudentsByYear($year){
-
+    public function showStudentsByYear($year)
+    {
         $students = Student::where('studentYear', $year)->get();
-
-        return view('ManageReportActivity.MUIP Admin.ViewStudentList', compact('students','year'));
+        return view('ManageReportActivity.MUIP Admin.ViewStudentList', ['students' => $students, 'year' => $year]);
     }
+
+
 
     public function viewAcademicPerformance($studentIC)
     {
         // Assuming you want to get results for a specific student
         $results = Result::where('studentIC', $studentIC)->with('subject')->get();
+        $subjects = Subject::all(); // Retrieve all subjects
 
-        return view('ManageReportActivity.MUIP Admin.ViewAcademicPerformance', compact('results'));
+        return view('ManageReportActivity.MUIP Admin.ViewAcademicPerformance', compact('results', 'subjects'));
     }
-
 }

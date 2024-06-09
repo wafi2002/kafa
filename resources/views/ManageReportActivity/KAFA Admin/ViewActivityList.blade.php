@@ -6,19 +6,21 @@
         <input type="text" class="form-control" id="searchInput" placeholder="Search..." aria-label="Search"
             aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" onclick="searchActivity()">Search</button>
+            <button class="btn btn-outline-secondary btn-custom" type="button" onclick="searchActivity()">Search</button>
         </div>
     </div>
 
     <!-- List of Activities -->
     <div class="list-group" id="activityList">
         @foreach ($activities as $activity)
-            <button type="button" class="list-group-item list-group-item-action"
+            <button type="button"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
                 onclick="@if ($activity->status == 'Finished') window.location='{{ route('report.ViewCompletePostMortem', $activity->id) }}'
                 @else
                     window.location='{{ route('report.ViewActivityDetail', $activity->id) }}' @endif">
-                {{ $activity->activityName }} - <span
-                    class="badge {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">{{ $activity->status }}</span>
+                <span>{{ $activity->activityName }}</span>
+                <span
+                    class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">{{ $activity->status }}</span>
             </button>
         @endforeach
     </div>
@@ -27,6 +29,30 @@
     <div class="alert alert-danger mt-3" role="alert" id="notFoundAlert" style="display: none;">
         Activity not found.
     </div>
+
+    <style>
+        .badge-custom {
+            border: 1px solid #000;
+            /* Change the border color as needed */
+            border-radius: 5px;
+            /* Adjust the border-radius as needed */
+            padding: 0.25em 0.75em;
+            /* Adjust padding for better spacing */
+        }
+
+        .btn-custom {
+            background-color: yellow;
+            border-color: yellow;
+            color: black;
+            margin-left: 5px;
+            /* Adjust the margin to create a gap */
+        }
+
+        .input-group-append {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 
     <script>
         function searchActivity() {
@@ -37,7 +63,7 @@
             var activityFound = false;
 
             for (var i = 0; i < activityButtons.length; i++) {
-                var activityName = activityButtons[i].textContent.toLowerCase();
+                var activityName = activityButtons[i].getElementsByTagName('span')[0].textContent.toLowerCase();
                 if (activityName.includes(searchInput)) {
                     activityButtons[i].style.display = "block";
                     activityFound = true;

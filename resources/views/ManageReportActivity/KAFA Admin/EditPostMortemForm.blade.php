@@ -2,29 +2,24 @@
 
 @section('content')
     <div class="container">
-        <h2>Edit Post-Mortem for Activity: {{ $activity->activityName }}</h2>
+        <div class="card mb-3 mt-4">
+            <div class="card-body">
+                <h4 class="card-title">Edit Post-Mortem for Activity: {{ $activity->activityName }}</h4>
 
-        <form method="POST" action="{{ route('report.PostMortemUpdate', ['id' => $activity->id, 'postMortemId' => $postMortem->id]) }}">
-            @csrf
-            @method('PUT')
+                <form method="POST"
+                    action="{{ route('report.PostMortemUpdate', ['id' => $activity->id, 'postMortemId' => $postMortem->id]) }}">
+                    @csrf
+                    @method('PUT')
 
-            <div class="form-group">
-                <label for="postDescription">Description</label>
-                <input type="text" class="form-control" id="postDescription" name="postDescription" value="{{ $postMortem->postDescription }}" required>
+                    <div class="form-group">
+                        <textarea class="form-control" id="postDescription" name="postDescription" rows="5" required>{{ $postMortem->postDescription }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                    <a href="{{ route('report.ViewCompletePostMortem', $activity->id) }}"
+                        class="btn btn-secondary mt-3">Back</a>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="postDate">Date</label>
-                <input type="date" class="form-control" id="postDate" name="postDate" value="{{ $postMortem->postDate }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="postStatus">Status</label>
-                <input type="text" class="form-control" id="postStatus" name="postStatus" value="{{ $postMortem->postStatus }}" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ route('report.ViewCompletePostMortem', $activity->id) }}" class="btn btn-secondary">Back</a>
-        </form>
+        </div>
     </div>
 @endsection

@@ -2,43 +2,37 @@
 
 @section('content')
     <div class="container">
-        <h2>Details for Activity: {{ $activity->activityName }}</h2>
-
-        <div class="card mb-3">
-            <div class="card-header">
-                Activity Details
-            </div>
+        <div class="card mb-3 mt-4">
             <div class="card-body">
-                <p><strong>Description:</strong> {{ $activity->activityDescription }}</p>
-                <p><strong>Date:</strong> {{ $activity->activityDate }}</p>
-                <p><strong>Time:</strong> {{ $activity->activityTime }}</p>
-                <p><strong>Tentative:</strong> {{ $activity->activityTentative }}</p>
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title"><strong>{{ $activity->activityName }}</strong></h5>
+                    <h6 class="card-subtitle text-muted"><strong>Date:</strong> {{ $activity->activityDate }}</h6>
+                </div>
+                <p class="mt-3"> {{ $activity->activityDescription }}</p>
             </div>
         </div>
 
-        <h3>Post-Mortem Reports</h3>
-
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
 
-        @if($activity->postMortems->isEmpty())
+        @if ($activity->postMortems->isEmpty())
             <p>No post-mortem reports available for this activity.</p>
         @else
             <ul class="list-group">
-                @foreach($activity->postMortems as $postMortem)
+                @foreach ($activity->postMortems as $postMortem)
                     <li class="list-group-item">
-                        <p><strong>Description:</strong> {{ $postMortem->postDescription }}</p>
-                        <p><strong>Date:</strong> {{ $postMortem->postDate }}</p>
-                        <p><strong>Status:</strong> {{ $postMortem->postStatus }}</p>
-                        <a href="{{ route('report.EditPostMortemForm', ['id' => $activity->id, 'postMortemId' => $postMortem->id]) }}" class="btn btn-warning">Edit</a>
+                        <h5>Post-Mortem Reports</h5>
+                        <p> {{ $postMortem->postDescription }}</p>
                     </li>
                 @endforeach
             </ul>
+            <a href="{{ route('report.EditPostMortemForm', ['id' => $activity->id, 'postMortemId' => $postMortem->id]) }}"
+                class="btn btn-warning mt-3 float-right">Edit</a>
         @endif
 
-        <a href="{{ route('report.ViewActivityList') }}" class="btn btn-secondary mt-3">Back to Activities</a>
+        <a href="{{ route('report.ViewActivityList') }}" class="btn btn-secondary mt-3 float-right ml-3">Back</a>
     </div>
 @endsection
