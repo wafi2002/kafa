@@ -38,7 +38,7 @@
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Timetable</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                    <a href="{{ route('report.ViewActivityList')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Report</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Fee</span>
