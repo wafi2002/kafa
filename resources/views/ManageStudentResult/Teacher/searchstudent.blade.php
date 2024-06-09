@@ -40,7 +40,7 @@
                             <td>{{ $student->studentYear }}</td>
                             <td class="text-end">
                                 <button class="btn btn-info">View</button>
-                                <button class="btn btn-success">Add</button>
+                                <a href="{{ route('results.add') }}" class="btn btn-success">Add</a>
                                 <button class="btn btn-warning">Edit</button>
                                 <button class="btn btn-danger">Delete</button>
                             </td>

@@ -86,4 +86,8 @@ class ManageResultController extends Controller
 
         return view('ManageStudentResult.Teacher.searchstudent', compact('students', 'studentName'));
     }
+    public function addResult()
+{
+    return view('ManageStudentResult.Teacher.addResult');
+}
 }

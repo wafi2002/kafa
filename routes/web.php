@@ -30,3 +30,4 @@ Route::get('/results/search', [ManageResultController::class, 'searchForm'])->na
 Route::post('/results/search', [ManageResultController::class, 'search'])->name('results.search'); //takguna
 Route::get('/students/search', [ManageResultController::class, 'searchStudentForm'])->name('students.searchForm');
 Route::post('/students/search', [ManageResultController::class, 'searchStudent'])->name('students.search');
+Route::get('/results/add', [ManageResultController::class, 'addResult'])->name('results.add');

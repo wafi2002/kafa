@@ -46,8 +46,7 @@
                                 aria-controls="pills-profile" aria-selected="false">Activity</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button"  href="{{ route('students.searchForm') }}" role="tab"
+                            <a class="nav-link" id="pills-contact-tab" href="{{ route('students.searchForm') }}" role="tab"
                                 aria-controls="pills-contact" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
