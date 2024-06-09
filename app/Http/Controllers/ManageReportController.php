@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\PostMortem;
+use App\Models\Student;
+use App\Models\Result;
 use Carbon\Carbon;
 
 class ManageReportController extends Controller
@@ -167,6 +169,27 @@ class ManageReportController extends Controller
         return view('ManageReportActivity.MUIP Admin.ViewCompletePostMortem', compact('activity'));
     }
 
+    public function showYears(){
 
+        $years = Student::select('studentYear')->distinct()->orderBy('studentYear')->pluck('studentYear');
+
+        return view('ManageReportActivity.MUIP Admin.ViewAcademicLevelOption', compact('years'));
+
+    }
+
+    public function showStudentsByYear($year){
+
+        $students = Student::where('studentYear', $year)->get();
+
+        return view('ManageReportActivity.MUIP Admin.ViewStudentList', compact('students','year'));
+    }
+
+    public function viewAcademicPerformance($studentIC)
+    {
+        // Assuming you want to get results for a specific student
+        $results = Result::where('studentIC', $studentIC)->with('subject')->get();
+
+        return view('ManageReportActivity.MUIP Admin.ViewAcademicPerformance', compact('results'));
+    }
 
 }

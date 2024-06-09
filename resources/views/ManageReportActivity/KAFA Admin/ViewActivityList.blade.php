@@ -19,7 +19,6 @@
                     window.location='{{ route('report.ViewActivityDetail', $activity->id) }}' @endif">
                 {{ $activity->activityName }} - <span
                     class="badge {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">{{ $activity->status }}</span>
-                
             </button>
         @endforeach
     </div>

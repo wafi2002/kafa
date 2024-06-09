@@ -10,6 +10,34 @@
     <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/adminstyle.css">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}">
 </head>
+<style>
+    /* Custom styles to ensure the dropdown works */
+    .position-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+    }
+
+    .dropdown-menu {
+        position: static;
+        float: none;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .dropdown-item {
+        text-align: center;
+    }
+</style>
+</style>
 
 <body style="background-color: #26BBE1;">
     {{-- Navbar --}}
@@ -39,19 +67,16 @@
                         <span>Timetable</span></a>
 
                     <!-- Dropdown Menu -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown mt-2">
+                        <a class="list-group-item list-group-item-action py-2 ripple text-center dropdown-toggle"
+                            href="#" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                            Report
+                        </a>
+                        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ route('report.ViewFinishActivityList')}}">Activity</a>
+                            <a class="dropdown-item" href="{{ route('report.AcademicYearOption')}}">Academic</a>
                         </div>
                     </div>
-
-
                     <!-- End Dropdown Menu -->
 
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
@@ -111,6 +136,8 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('/') }}assets/dist/js/bootstrap.bundle.min.js"></script>
 
 
