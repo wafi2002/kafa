@@ -12,8 +12,8 @@ class Result extends Model
     protected $fillable = [
 
         'resultMark',
-        'subject_id',
-        'student_IC',
+        'subjectID',
+        'studentIC',
     ];
 
     public function subject()

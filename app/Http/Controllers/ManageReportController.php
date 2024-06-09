@@ -27,7 +27,7 @@ class ManageReportController extends Controller
     {
         $activities = Activity::with('postMortems')->get();
 
-        return view('ManageReportActivity.MUIP Admin.ViewActivityList', compact('activities'));
+        return view('ManageReportActivity.MUIP Admin.ViewFinishActivityList', compact('activities'));
     }
 
 

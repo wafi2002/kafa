@@ -20,7 +20,6 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-2 custom-pt">
-
                     <a class="nav-link d-flex justify-content-center align-items-center" href="#"
                         id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
@@ -32,22 +31,37 @@
                         aria-current="true">
                         <span>Home</span>
                     </a>
+
                     <a href="#"
-                        class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
+                        class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between">
                         <span>Student Result</span>
                     </a>
-                    <a href="{{ route('manage.timetable.list') }}" class="list-group-item list-group-item-action py-2 ripple text-center ">
-                        <span>Timetable</span></a>
-                    <a href="{{ route('report.ViewActivityList')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
-                        <span>Report</span></a>
+
+                    <a class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Timetable</span>
+                    </a>
+
+                    <a href="{{ route('report.ViewActivityList') }}"
+                        class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Report</span>
+                    </a>
+
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Fee</span>
                     </a>
+
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
-                        <span>Activity</span></a>
+                        <span>Activity</span>
+                    </a>
+
+                    <!-- New Nav Link: Profile User -->
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Profile User</span>
+                    </a>
                 </div>
             </div>
         </nav>
+
         <!-- Sidebar -->
 
         <!-- Navbar -->
@@ -64,7 +78,7 @@
                 <a class="navbar-brand" href="#">
                     <img src="{{ asset('images/logo.png') }}" height="45" alt="MDB Logo" loading="lazy" />
                 </a>
-                
+
 
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">
@@ -109,14 +123,18 @@
                                     class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
                                     <span>Student Result</span>
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="#"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Timetable</span></a>
-                                <a href="{{ route('report.ViewActivityList')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="{{ route('report.ViewActivityList') }}"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Report</span></a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="#"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Fee</span>
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="#"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Activity</span></a>
                             </div>
                         </div>
