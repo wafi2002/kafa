@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\ManageRegistrationController;
 use App\Http\Controllers\ManageReportController;
+use App\Http\Controllers\ManageTimetableController;
 
 Route::get('/', function () {
     return view('auth.login');
