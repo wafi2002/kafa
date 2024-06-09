@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Activity;
 
 class ManageActivityController extends Controller
 {
@@ -12,7 +13,8 @@ class ManageActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activity = Activity::all();
+        return view('ManageKafaActivity.try');
     }
 
     /**

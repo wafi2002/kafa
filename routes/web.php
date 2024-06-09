@@ -36,3 +36,6 @@ Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::clas
 Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@update')->name('manage.timetable.list.update');
 // deletes a timetable
 Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@destroy')->name('manage.timetable.list.destroy');
+
+
+Route::get('Teacher/try', [ManageActivityController::class, 'index'])->name('teacher.try');
