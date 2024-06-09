@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Result;
+use App\Models\Student;
 
 class ManageResultController extends Controller
 {
@@ -66,5 +67,23 @@ class ManageResultController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    
+
+    public function searchStudentForm()
+    {
+        return view('ManageStudentResult.Teacher.searchstudent');
+    }
+
+    public function searchStudent(Request $request)
+    {
+        $request->validate([
+            'studentName' => 'required|string|max:255',
+        ]);
+
+        $studentName = $request->input('studentName');
+        $students = Student::where('studentName', 'LIKE', "%{$studentName}%")->get();
+
+        return view('ManageStudentResult.Teacher.searchstudent', compact('students', 'studentName'));
     }
 }

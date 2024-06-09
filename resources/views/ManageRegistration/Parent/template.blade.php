@@ -33,19 +33,19 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                            <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
+                            <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="{{ route('result') }}" role="tab" aria-controls="pills-contact" aria-selected="false">Result</a>
+                            <a class="nav-link" id="pills-result-tab" href="{{ route('result') }}" role="tab" aria-controls="pills-result" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-timetable-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-timetable" aria-selected="false">Timetable</a>
+                            <a class="nav-link" id="pills-timetable-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-timetable" aria-selected="false">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-payment-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-payment" aria-selected="false">Payment</a>
+                            <a class="nav-link" id="pills-payment-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-payment" aria-selected="false">Payment</a>
                         </li>
                     </ul>
                 </div>

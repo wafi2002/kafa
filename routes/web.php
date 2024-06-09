@@ -23,4 +23,10 @@ Route::get('Parent/Dashboard', [ManageRegistrationController::class, 'index'])->
 Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])->name('teacher.dashboard')->middleware('teacher');
 
 
-Route::get('Parent/result', [ManageResultController::class, 'index'])->name('result');
+Route::get('/result', [ManageResultController::class, 'index'])->name('result');
+Route::get('/results/create', [ManageResultController::class, 'create'])->name('results.create');
+Route::post('/results', [ManageResultController::class, 'store'])->name('results.store');
+Route::get('/results/search', [ManageResultController::class, 'searchForm'])->name('results.searchForm'); //takguna
+Route::post('/results/search', [ManageResultController::class, 'search'])->name('results.search'); //takguna
+Route::get('/students/search', [ManageResultController::class, 'searchStudentForm'])->name('students.searchForm');
+Route::post('/students/search', [ManageResultController::class, 'searchStudent'])->name('students.search');
