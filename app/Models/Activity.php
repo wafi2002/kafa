@@ -15,4 +15,14 @@ class Activity extends Model
     {
         return $this->hasMany(PostMortem::class);
     }
+
+    public function getStatusAttribute()
+    {
+        if ($this->postMortems->isEmpty()) {
+            return 'Ongoing';
+        } else {
+            $postMortem = $this->postMortems->first();
+            return $postMortem->postStatus == 'Finished' ? 'Finished' : 'Ongoing';
+        }
+    }
 }

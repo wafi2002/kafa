@@ -20,17 +20,6 @@ class ManageReportController extends Controller
     {
         $activities = Activity::with('postMortems')->get();
 
-        // Determine the status of each activity based on post-mortem status
-        foreach ($activities as $activity) {
-            if ($activity->postMortems->isEmpty()) {
-                $activity->status = 'Ongoing';
-            } else {
-                // Assuming there is only one post-mortem entry per activity for simplicity
-                $postMortem = $activity->postMortems->first();
-                $activity->status = $postMortem->postStatus == 'Finished' ? 'Finished' : 'Ongoing';
-            }
-        }
-
         return view('ManageReportActivity.KAFA Admin.ViewActivityList', compact('activities'));
     }
 
@@ -38,17 +27,7 @@ class ManageReportController extends Controller
     {
         $activities = Activity::with('postMortems')->get();
 
-        foreach ($activities as $activity) {
-            if ($activity->postMortems->isEmpty()) {
-                $activity->status = 'Ongoing';
-            } else {
-                // Assuming there is only one post-mortem entry per activity for simplicity
-                $postMortem = $activity->postMortems->first();
-                $activity->status = $postMortem->postStatus == 'Finished' ? 'Finished' : 'Ongoing';
-            }
-        }
-
-        return view('ManageReportActivity.MUIP Admin.ViewFinishActivityList', compact('activities'));
+        return view('ManageReportActivity.MUIP Admin.ViewActivityList', compact('activities'));
     }
 
 
