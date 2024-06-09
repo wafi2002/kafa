@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Timetable;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class ManageTimetableController extends Controller
@@ -99,7 +100,13 @@ class ManageTimetableController extends Controller
     }
     public function timetablelist()
     {
-        $timetables = Timetable::all(); // assuming you have a Timetable model
+        $timetables = Timetable::with('user')->get();
+
+        foreach ($timetables as $timetable) {
+            $role = $timetable->user->role;
+            // do something with the role
+        }
+
         return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
     }
 }
