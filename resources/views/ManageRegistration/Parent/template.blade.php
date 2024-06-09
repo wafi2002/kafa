@@ -35,32 +35,29 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Home</button>
+                            <a class="nav-link active" id="pills-home-tab"
+                                href="{{ route('report.ViewFinishActivityList') }}" role="tab"
+                                aria-controls="pills-home" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Activity</button>
+                            <a class="nav-link" id="pills-profile-tab"
+                                role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Result</button>
+                            <a class="nav-link" id="pills-contact-tab"
+                                role="tab" aria-controls="pills-contact" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Timetable</button>
+                            <a class="nav-link" id="pills-profile-tab"
+                                role="tab" aria-controls="pills-profile" aria-selected="false">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Payment</button>
+                            <a class="nav-link" id="pills-contact-tab" 
+                                role="tab" aria-controls="pills-contact" aria-selected="false">Payment</a>
                         </li>
                     </ul>
                 </div>
+
 
                 <!-- Right links -->
                 <div class="d-flex align-items-center">
