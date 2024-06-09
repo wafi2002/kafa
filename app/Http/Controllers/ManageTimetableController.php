@@ -46,11 +46,13 @@ class ManageTimetableController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        $timetables = Timetable::find($id);
+{
+    $teacherID = auth()->user()->id; // assuming you are using Laravel's built-in auth system
+    $timetables = Timetable::with('teacher')->where('teacherID', $teacherID)->find($id);
+    $timetable_classname = $timetables->timetable_classname; // assuming classname is a field in the timetables table
 
-        return view('ManageTimetable.Teacher.TeacherView', compact('timetables'));
-    }
+    return view('ManageTimetable.Teacher.TimetableView', compact('timetables', 'timetable_classname'));
+}
 
     /**
      * Show the form for editing the specified resource.

@@ -29,7 +29,7 @@ Route::get('/manage/timetable/create', ManageTimetableController::class . '@crea
 // adds a timetable to the database
 Route::post('/manage/timetable', ManageTimetableController::class .'@store')->name('manage.timetable.list.store');
 // returns a page that shows a full timetable
-Route::get('/manage/timetable/{timetable}', ManageTimetableController::class .'@show')->name('manage.timetable.list.show');
+Route::get('/manage/timetable/{id}', ManageTimetableController::class .'@show')->name('manage.timetable.list.show');
 // returns the form for editing a timetable
 Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::class .'@edit')->name('manage.timetable.list.edit');
 // updates a timetable

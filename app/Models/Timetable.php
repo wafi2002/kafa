@@ -12,4 +12,9 @@ class Timetable extends Model
         'title',
         'body',
     ];
+
+    public function teacher()
+{
+    return $this->belongsTo(User::class, 'teacherID', 'id');
+}
 }
