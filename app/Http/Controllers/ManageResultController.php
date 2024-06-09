@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Result;
 
 class ManageResultController extends Controller
 {
@@ -12,7 +13,11 @@ class ManageResultController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve all data from the 'results' table
+        $results = Result::all();
+
+        // Pass the data to the view
+        return view('ManageStudentResult.Parents.parentsatu', compact('results'));
     }
 
     /**

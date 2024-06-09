@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\ManageRegistrationController;
-
+use App\Http\Controllers\ManageResultController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -21,3 +21,6 @@ Route::get('KAFA/Dashboard', [ManageRegistrationController::class, 'index'])->na
 Route::get('MUIP/Dashboard', [ManageRegistrationController::class, 'index'])->name('muip.dashboard')->middleware('muip');
 Route::get('Parent/Dashboard', [ManageRegistrationController::class, 'index'])->name('parent.dashboard')->middleware('parent');
 Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])->name('teacher.dashboard')->middleware('teacher');
+
+
+Route::get('Parent/result', [ManageResultController::class, 'index'])->name('result');

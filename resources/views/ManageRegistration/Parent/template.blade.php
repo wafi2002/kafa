@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="{{ asset('/') }}assets/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="{{ asset('/') }}assets/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/parent.css">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}">
 
@@ -21,8 +20,7 @@
             <!-- Container wrapper -->
             <div class="container-fluid d-flex align-items-center justify-content-between">
                 <!-- Toggle button -->
-                <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#sidebarMenu"
-                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-bars"></i>
                 </button>
 
@@ -35,39 +33,29 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Home</button>
+                            <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Activity</button>
+                            <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Result</button>
+                            <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="{{ route('result') }}" role="tab" aria-controls="pills-contact" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Timetable</button>
+                            <a class="nav-link" id="pills-timetable-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-timetable" aria-selected="false">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Payment</button>
+                            <a class="nav-link" id="pills-payment-tab" data-bs-toggle="pill"  role="tab" aria-controls="pills-payment" aria-selected="false">Payment</a>
                         </li>
                     </ul>
                 </div>
+
 
                 <!-- Right links -->
                 <div class="d-flex align-items-center">
                     <form method="POST" action="{{ route('logout') }}" class="mb-0">
                         @csrf
-                        <button type="submit" class="btn btn-warning"
-                            onclick="event.preventDefault(); this.closest('form').submit();">
+                        <button type="submit" class="btn btn-warning" onclick="event.preventDefault(); this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </button>
                     </form>
@@ -94,8 +82,7 @@
     {{-- End Content --}}
 
 
-    <script src="{{ asset('/') }}assets/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    <script src="{{ asset('/') }}assets/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 </body>
 
