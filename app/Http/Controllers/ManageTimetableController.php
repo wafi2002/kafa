@@ -109,28 +109,61 @@ class ManageTimetableController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        $timetables = Timetable::find($id);
+{
+    // Find the timetable record by its ID
+    $timetable = Timetable::find($id);
 
-        return view('ManageTimetable.KAFAAdmin.TimetableEdit', compact('timetables'));
-    }
+    // Retrieve all users who have the role of 'Teacher'
+    $teachers = User::where('role', 'Teacher')->get();
+
+    // Pass the timetable and teachers data to the TimetableEdit view
+    return view('ManageTimetable.KAFAAdmin.TimetableEdit', compact('timetable', 'teachers'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ]);
+    public function update(Request $request, $id)
+{
+    // Validate the request data
+    $rules = [
+        'class_teacher' => 'required',
+        'class_name' => 'required',
+    ];
 
-        $timetables = Timetable::find($id);
-        $timetables->update($request->all());
+    $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+    $times = [1, 2, 3, 4, 5];
 
-        return redirect()->route('ManageTimetable.Teacher.TimetableList')
-            ->with('success', 'Timetables updated successfully.');
+    foreach ($days as $day) {
+        foreach ($times as $time) {
+            $field = $day. $time;
+            $rules[$field] = 'nullable'; // make the subject fields optional
+        }
     }
+
+    $request->validate($rules);
+
+    // Update the timetable
+    $timetable = Timetable::find($id);
+    $timetable->userID = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
+    $timetable->timetable_classname = $request->input('class_name');
+    $timetable->timetable_year = now()->year; // Set the current year as the timetable_year
+
+    foreach ($days as $day) {
+        foreach ($times as $time) {
+            $field = $day. $time;
+            $subject = $request->input($field);
+            if ($subject) {
+                $timetable->$field = $subject; // Update the subject data in the timetable model
+            }
+        }
+    }
+
+    $timetable->save();
+
+    return redirect()->route('manage.timetable.list')
+        ->with('success', 'Timetable updated successfully.');
+}
 
     /**
      * Remove the specified resource from storage.

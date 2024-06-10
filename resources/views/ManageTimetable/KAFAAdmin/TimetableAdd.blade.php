@@ -41,7 +41,7 @@
                             @php
                                 $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
                                 $times = ['1', '2', '3', '4', '5', '6'];
-                                $subjects = ['Math', 'Science', 'English', 'History', 'Geography', 'Physical Education', 'Art', 'Music']; // Replace with your subject options
+                                $subjects = ['LUGHATUL QURAN', 'AQIDAH', 'IBADAH', 'SIRAH', 'TILAWAH', 'JAWI', 'AMALI', 'TILAWAH']; // Replace with your subject options
                             @endphp
 
                             @foreach($days as $day)
@@ -71,16 +71,12 @@
                         </tbody>
                     </table>
 
-              <!-- Submit button -->
+              <!-- Submit and Cancel buttons -->
               <div class="mt-3 d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary" style="border-radius: 5px;">Create Timetable</button>
-              </div>
+                <button type="submit" class="btn" style="border-radius: 5px; background-color: #343a40; color: white; margin-right: 10px;">Save</button>
+                <a href="javascript:history.back()" class="btn" style="border-radius: 5px; background-color: white; color: black; border: 2px solid #343a40;">Cancel</a>
+            </div>
           </form>
-
-          <!-- Back button -->
-          <div class="mt-3 d-flex justify-content-end">
-              <a href="javascript:history.back()" class="btn btn-dark" style="background-color: #343c44; color: white; border-radius: 5px;">Back</a>
-          </div>
       </div>
   </div>
 </div>
