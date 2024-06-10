@@ -35,3 +35,5 @@ Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::clas
 Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@update')->name('manage.timetable.list.update');
 // deletes a timetable
 Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@destroy')->name('manage.timetable.list.destroy');
+// confirmation to delete a timetable
+Route::get('/manage/timetable/{timetable}/confirm', ManageTimetableController::class .'@confirm')->name('manage.timetable.list.confirm');

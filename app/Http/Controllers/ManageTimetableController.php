@@ -177,6 +177,11 @@ class ManageTimetableController extends Controller
             ->with('success', 'Timetable deleted successfully');
     }
 
+    public function confirm()
+    {
+        return view('ManageTimetable.KAFAAdmin.TimetableDelete');
+    }
+
     public function teacherTemplateTimetable()
     {
         return view('ManageTimetable.Teacher.TeacherTemplate');
