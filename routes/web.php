@@ -24,8 +24,15 @@ Route::get('Parent/Dashboard', [ManageRegistrationController::class, 'index'])->
 Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])->name('teacher.dashboard')->middleware('teacher');
 
 Route::get('KAFA/ParentTeacherList', [ManageProfileController::class, 'index'])->name('profile.ParentTeacherList');
-Route::get('profile/parent/{id}', [ManageProfileController::class, 'showParentDetail'])->name('profile.showParent');
-Route::get('profile/teacher/{id}', [ManageProfileController::class, 'showTeacherDetail'])->name('profile.showTeacher');
+Route::get('KAFA/parent/{id}', [ManageProfileController::class, 'showParentDetail'])->name('profile.showParent');
+Route::get('KAFA/teacher/{id}', [ManageProfileController::class, 'showTeacherDetail'])->name('profile.showTeacher');
+Route::get('KAFA/parent/edit/{id}', [ManageProfileController::class, 'editParent'])->name('profile.editParent');
+Route::get('KAFA/teacher/edit/{id}', [ManageProfileController::class, 'editTeacher'])->name('profile.editTeacher');
+Route::put('KAFA/parent/{id}', [ManageProfileController::class, 'updateParent'])->name('parent.update');
+Route::put('KAFA/teacher/{id}', [ManageProfileController::class, 'updateTeacher'])->name('teacher.update');
+Route::delete('KAFA/profile/{id}', [ManageProfileController::class, 'delete'])->name('profile.delete');
+
+
 
 
 Route::get('KAFA/ViewActivityList', [ManageReportController::class, 'index'])->name('report.ViewActivityList');
