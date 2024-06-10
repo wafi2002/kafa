@@ -6,7 +6,7 @@
       <div>CLASS TIMETABLE LIST</div>
   </div>
   <div class="card-body d-flex justify-content-between align-items-center">
-    <div>Class teacher: {{ $timetables->first()->teacher->name }}</div>
+    <div>Class teacher: {{ $timetables->first()->user->name }}</div>
     <div>Class: {{ $timetable_classname }}</div>
 </div>
   <div class="card-body d-flex justify-content-center align-items-center">
@@ -40,7 +40,7 @@
                                     @php
                                         $field = strtolower($day) . $time;
                                     @endphp
-                                    <td style="padding: 8px; border: 2px solid #343c44;">{{ $timetables->$field }}</td>
+                                    <td style="padding: 8px; border: 2px solid #343c44;">{{ $specificTimetable->$field }}</td>
                                 @else
                                     <td style="padding: 8px; border: 2px solid #343c44;"></td>
                                 @endif
