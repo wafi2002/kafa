@@ -178,7 +178,7 @@ class ManageResultController extends Controller
             ->whereNull('deleted_at') // Exclude soft-deleted records
             ->get();
 
-        return view('ManageStudentResult.MUIP_Admin.muipSearch', compact('students', 'studentName'));
+        return view('ManageStudentResult.MUIP Admin.muipSearch', compact('students', 'studentName'));
     }
     
   
@@ -249,6 +249,15 @@ public function showDeleteForm($id)
 
     // Return the deleteResult blade view with the result data
     return view('ManageStudentResult.Teacher.deleteResult', compact('student', 'results'));
+}
+
+public function viewKafaResult($studentId)
+{
+    // Retrieve the results for the specified student_id
+    $results = Result::where('student_id', $studentId)->get();
+
+    // Pass the results to the view
+    return view('ManageStudentResult.MUIP Admin.muipView', compact('results'));
 }
 
 }

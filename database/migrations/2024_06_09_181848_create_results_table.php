@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('subjectID')->constrained('subjectIDs')->onDelete('cascade');
+            $table->string('studentIC');
+            $table->integer('resultMark');
+            // Add any other columns you need for the results table
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('results');
     }
 };

@@ -9,7 +9,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/parent.css">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.5.2-web/css/all.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/timetable.css">
 </head>
 
 <body style="background-color: #4299FE;">
@@ -36,25 +36,34 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="pills-home-tab"
-                                href="{{ route('report.ViewFinishActivityList') }}" role="tab"
-                                aria-controls="pills-home" aria-selected="true">Home</a>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('teacher.dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" href="{{ route('activities.search') }}"
-                                role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-profile" type="button" role="tab"
+                                aria-controls="pills-profile" aria-selected="false">Activity</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-contact-tab" href="{{ route('students.searchForm') }}" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Result</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-contact" type="button" role="tab"
+                                aria-controls="pills-contact" aria-selected="false">Result</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab"
-                                role="tab" aria-controls="pills-profile" aria-selected="false">Timetable</a>
+                            <div class="dropdown">
+                                <button class="dropbtn">Timetable</button>
+                                <div class="dropdown-content">
+                                  <a href="{{ route('manage.timetable.list') }}">Year 1</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 2</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 3</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 4</a>
+                                  <a href="{{ route('manage.timetable.list') }}">Year 5</a>
+                                </div>
+                              </div>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-contact-tab"
-                                role="tab" aria-controls="pills-contact" aria-selected="false">Payment</a>
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-contact" type="button" role="tab"
+                                aria-controls="pills-contact" aria-selected="false">Report</button>
                         </li>
                     </ul>
                 </div>
@@ -85,7 +94,7 @@
     {{-- Content --}}
     <div class="mt-2 ">
         <div class="container">
-            @yield('content')
+            @yield('contentTTimetable')
         </div>
     </div>
     {{-- End Content --}}

@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class ManageActivityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+
     public function index()
     {
         //
+        return view('ManageKafaActivity.Teacher.ViewActivity1', compact('activities'));
     }
 
     /**
@@ -62,4 +62,6 @@ class ManageActivityController extends Controller
     {
         //
     }
+
+    
 }

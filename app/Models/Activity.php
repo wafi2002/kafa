@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['activityName', 'activityDescription', 'activityDate', 'activityTime', 'activityTentative'];
+
+    public function postMortems()
+    {
+        return $this->hasMany(PostMortem::class);
+    }
+
+    public function getStatusAttribute()
+    {
+        if ($this->postMortems->isEmpty()) {
+            return 'Ongoing';
+        } else {
+            $postMortem = $this->postMortems->first();
+            return $postMortem->postStatus == 'Finished' ? 'Finished' : 'Ongoing';
+        }
+    }
 }
