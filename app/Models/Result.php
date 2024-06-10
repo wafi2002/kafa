@@ -18,6 +18,7 @@ class Result extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class, 'subjectID');
+        return $this->belongsTo(Subject::class, 'subject_id');
     }
+
 }
