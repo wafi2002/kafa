@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\ManageRegistrationController;
 use App\Http\Controllers\ManageTimetableController;
+use App\Http\Controllers\ManageActivityController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,3 +40,6 @@ Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class 
 
 
 Route::get('Teacher/try', [ManageActivityController::class, 'index'])->name('teacher.try');
+
+Route::get('/search', [ManageActivityController::class, 'index'])->name('activities.search');
+Route::post('/search', [ManageActivityController::class, 'search'])->name('activities.search.submit');

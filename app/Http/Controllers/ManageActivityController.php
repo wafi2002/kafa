@@ -13,8 +13,8 @@ class ManageActivityController extends Controller
      */
     public function index()
     {
-        $activity = Activity::all();
-        return view('ManageKafaActivity.try');
+        $activities = Activity::all();
+        return view('ManageKAFAactivity.Teacher.ViewActivity1', compact('activities'));
     }
 
     /**
@@ -64,4 +64,6 @@ class ManageActivityController extends Controller
     {
         //
     }
+
+
 }

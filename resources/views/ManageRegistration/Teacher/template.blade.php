@@ -41,7 +41,7 @@
                                 aria-selected="true">Home</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" href="{{ route('teacher.∏') }}">Activity</a>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('teacher.try') }}">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
