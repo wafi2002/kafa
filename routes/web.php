@@ -7,6 +7,7 @@ use App\Http\Controllers\ManageProfileController;
 use App\Http\Controllers\ManageRegistrationController;
 use App\Http\Controllers\ManageReportController;
 use App\Http\Controllers\ManageTimetableController;
+use App\Http\Controllers\ManageActivityController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -49,3 +50,4 @@ Route::get('MUIP/YearOption', [ManageReportController::class, 'showYears'])->nam
 Route::get('MUIP/YearOption/{year}', [ManageReportController::class, 'showStudentsByYear'])->name('report.StudentByYear');
 Route::get('MUIP/{id}/AcademicPerformance', [ManageReportController::class, 'viewAcademicPerformance'])->name('report.ViewAcademicPerformance');
 
+Route::get('/search-activities', [ManageActivityController::class, 'index'])->name('activities.search');

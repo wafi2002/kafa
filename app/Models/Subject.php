@@ -12,4 +12,11 @@ class Subject extends Model
     protected $fillable = [
         'subjectName',
     ];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+
 }
