@@ -32,7 +32,7 @@
                         aria-current="true">
                         <span>Home</span>
                     </a>
-                    <a href="#"
+                    <a href="{{ route('kafa.search') }}"
                         class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
                         <span>Student Result</span>
                     </a>

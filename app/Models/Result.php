@@ -11,8 +11,9 @@ class Result extends Model
 
     protected $fillable = [
         'student_id',
-        'subject',
-        'mark',
+        'studentName',
+        'subjectName',
+        'resultMark',
         'grade',
     ];
 }

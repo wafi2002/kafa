@@ -1,11 +1,11 @@
-@extends('ManageRegistration.Teacher.template')
+@extends('ManageRegistration.Parent.template')
 
 @section('content')
 <div class="container mt-5">
     <h2>Search Students</h2>
 
     {{-- Search Form --}}
-    <form action="{{ route('students.search') }}" method="POST">
+    <form action="{{ route('parents.search') }}" method="POST">
         @csrf
 
         <div class="mb-3">
@@ -40,9 +40,6 @@
                 <td>{{ $student->studentYear }}</td>
                 <td class="text-end">
                     <a href="{{ route('results.view', $student->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('results.add', $student->id) }}" class="btn btn-success">Add</a>
-                    <a href="{{ route('results.edit', $student->id) }}" class="btn btn-warning">Edit</a>
-                    <a href="{{ route('results.showDeleteForm', $student->id) }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             @endforeach

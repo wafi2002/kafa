@@ -32,7 +32,7 @@
                         aria-current="true">
                         <span>Home</span>
                     </a>
-                    <a href="#"
+                    <a href="{{ route('muip.showSearchForm') }}"
                         class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
                         <span>Student Result</span>
                     </a>
@@ -194,7 +194,7 @@
     <!--Main layout-->
 
     {{-- Content --}}
-    <div class="mt-2 ">
+    <div class="col-lg-6 ">
         <div class="container">
             @yield('content')
         </div>
