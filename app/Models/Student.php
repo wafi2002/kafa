@@ -22,4 +22,8 @@ class Student extends Model
         'studentGender',
         'studentYear',
     ];
+
+    
+
+
 }

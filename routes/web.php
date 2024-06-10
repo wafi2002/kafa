@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\ManageProfileController;
 use App\Http\Controllers\ManageRegistrationController;
 use App\Http\Controllers\ManageReportController;
 use App\Http\Controllers\ManageTimetableController;
@@ -22,6 +22,10 @@ Route::get('KAFA/Dashboard', [ManageRegistrationController::class, 'index'])->na
 Route::get('MUIP/Dashboard', [ManageRegistrationController::class, 'index'])->name('muip.dashboard')->middleware('muip');
 Route::get('Parent/Dashboard', [ManageRegistrationController::class, 'index'])->name('parent.dashboard')->middleware('parent');
 Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])->name('teacher.dashboard')->middleware('teacher');
+
+Route::get('KAFA/ParentTeacherList', [ManageProfileController::class, 'index'])->name('profile.ParentTeacherList');
+Route::get('profile/parent/{id}', [ManageProfileController::class, 'showParentDetail'])->name('profile.showParent');
+Route::get('profile/teacher/{id}', [ManageProfileController::class, 'showTeacherDetail'])->name('profile.showTeacher');
 
 
 Route::get('KAFA/ViewActivityList', [ManageReportController::class, 'index'])->name('report.ViewActivityList');

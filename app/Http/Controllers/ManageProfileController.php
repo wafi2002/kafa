@@ -3,19 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Parents;
 use Illuminate\Http\Request;
-use App\Models\Activity;
+
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\User;
 
 class ManageProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($id)
+    public function index()
     {
-        $activity = Activity::findOrFail($id);
-        return view('ManageReportActivity.KAFA Admin.ViewActivityDetail', ['activity' => $activity]);
+        // Retrieve users who are parents
+        $parents = Parents::all();
+
+        // Retrieve users who are teachers
+        $teachers = Teacher::all();
+
+
+        // Pass data to the view
+        return view('ManageProfile.Kafa Admin.ParentTeacherList', compact('parents', 'teachers'));
     }
+
+
+    public function showParentDetail($id)
+    {
+        // Retrieve the parent based on the provided ID
+        $parent = Parents::findOrFail($id);
+
+        // Pass the parent details to the view
+        return view('ManageProfile.Kafa Admin.UserDetail', compact('parent'));
+    }
+
+
+
+
+    public function showTeacherDetail($id)
+    {
+        // Fetch the teacher details from the database based on the provided ID
+        $teacher = Teacher::findOrFail($id);
+
+        // Pass the teacher details to the view
+        return view('ManageProfile.Kafa Admin.UserDetail', compact('teacher'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
