@@ -1,12 +1,8 @@
 <!-- resources/views/ManageKAFAactivity/Teacher/ViewActivity1.blade.php -->
 
-@extends('ManageRegistration.Teacher.template')
+@extends('ManageRegistration.Muip Admin.template')
 
 @section('content')
-    <!-- New Activity Button -->
-    <div class="mb-3">
-        <a href="{{ route('activities.create') }}" class="btn btn-primary">New Activity</a>
-    </div>
 
     <!-- Search Bar -->
     <div class="input-group mb-3">
@@ -22,7 +18,7 @@
         @foreach ($activities as $activity)
             <button type="button"
                 class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                onclick="window.location='{{ route('activities.show', $activity->id) }}'">
+                onclick="window.location='{{ route('MUIPadmin.activities.show', $activity->id) }}'">
                 <span>{{ $activity->activityName }}</span>
                 <span
                     class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">

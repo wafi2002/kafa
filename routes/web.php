@@ -38,8 +38,21 @@ Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@
 // deletes a timetable
 Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@destroy')->name('manage.timetable.list.destroy');
 
-
 Route::get('Teacher/try', [ManageActivityController::class, 'index'])->name('teacher.try');
 
 Route::get('/search', [ManageActivityController::class, 'index'])->name('activities.search');
-Route::post('/search', [ManageActivityController::class, 'search'])->name('activities.search.submit');
+Route::get('/search/{id}', [ManageActivityController::class, 'show'])->name('activities.show');
+Route::get('/activities/create', [ManageActivityController::class, 'create'])->name('activities.create');
+Route::post('/activities', [ManageActivityController::class, 'store'])->name('activities.store');
+Route::get('/activities/{id}/', [ManageActivityController::class, 'edit'])->name('activities.edit');
+Route::put('/activities/{id}', [ManageActivityController::class, 'update'])->name('activities.update');
+Route::delete('/activities/{id}', [ManageActivityController::class, 'destroy'])->name('activities.destroy');
+
+Route::get('/KAFAadminsearch', [ManageActivityController::class, 'KAFAindex'])->name('KAFAadmin.activities.search');
+Route::get('/KAFAadminsearch/{id}', [ManageActivityController::class, 'KAFAshow'])->name('KAFAadmin.activities.show');
+
+Route::get('/MUIPadminsearch', [ManageActivityController::class, 'MUIPindex'])->name('MUIPadmin.activities.search');
+Route::get('/MUIPadminsearch/{id}', [ManageActivityController::class, 'MUIPshow'])->name('MUIPadmin.activities.show');
+
+Route::get('/Parentsearch', [ManageActivityController::class, 'Parentindex'])->name('Parent.activities.search');
+Route::get('/Parentsearch/{id}', [ManageActivityController::class, 'Parentshow'])->name('Parent.activities.show');
