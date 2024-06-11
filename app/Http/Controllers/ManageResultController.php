@@ -168,7 +168,7 @@ class ManageResultController extends Controller
         $results = Result::where('student_id', $studentId)->get();
 
         // Pass the results to the view
-        return view('ManageStudentResult.MUIP Admin.kafaView', compact('results'));
+        return view('ManageStudentResult.KAFA Admin.kafaView', compact('results'));
     }
 
     public function showMuipSearchForm()
@@ -178,7 +178,7 @@ class ManageResultController extends Controller
 
     public function showKafaSearchForm()
     {
-        return view('ManageStudentResult.Kafa Admin.kafaSearch');
+        return view('ManageStudentResult.KAFA Admin.kafaSearch');
     }
 
 

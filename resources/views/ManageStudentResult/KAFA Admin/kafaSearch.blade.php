@@ -39,7 +39,7 @@
                 <td>{{ $student->studentName }}</td>
                 <td>{{ $student->studentYear }}</td>
                 <td class="text-end">
-                    <a href="{{ route('muip.searchStudent', $student->id) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('kafa.searchStudent', $student->id) }}" class="btn btn-info">View</a>
                 </td>
             </tr>
             @endforeach
