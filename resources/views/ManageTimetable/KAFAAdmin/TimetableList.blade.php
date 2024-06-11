@@ -12,15 +12,11 @@
                 <a href="{{ route('manage.timetable.list.create') }}">
                 <button class="btn btn-primary bg-dark mr-2" style="margin-right: 10px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1.5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     </svg>
                 </button>
                 </a>
-                <button class="btn bg-dark" style="color: white;">
-                  <a href="{{ route('manage.timetable.list.request') }}" style="color: white; text-decoration: none;">
-                      Request
-                  </a>
-                </button>
+                <button class="btn bg-dark" style="color: white;">Request</button>
             </div>
           <table class="table" style="width: 100%; border-collapse: collapse;">
             <thead class="thead-dark" style="background-color: #343a40; color: white;">
@@ -28,18 +24,16 @@
                 <th scope="col" style="padding: 8px; border: 1px solid #ddd;">No</th>
                 <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Class Name</th>
                 <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Year</th>
-                <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Last Approved</th>
                 <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Operation</th>
               </tr>
             </thead>
             <tbody>
               @foreach($timetables1 as $timetable)
-              <tr style="background-color: {{ $loop->even? '#f2f2f2' : 'white' }};">
-                <th scope="row" style="padding: 8px; border: 1px solid #ddd;">{{ $timetable->id }}</th>
-                <td style="padding: 8px; border: 1px solid #ddd;">{{ $timetable->timetable_classname }}</td>
-                <td style="padding: 8px; border: 1px solid #ddd;">{{ $timetable->timetable_year }}</td>
-                <td style="padding: 8px; border: 1px solid #ddd;">{{ $timetable->updated_at }}</td>
-                <td style="padding: 8px; border: 1px solid #ddd;">
+                <tr style="background-color: {{ $loop->even ? '#f2f2f2' : 'white' }};">
+                    <th scope="row" style="padding: 8px; border: 1px solid #ddd;">{{ $loop->iteration }}</th>
+                    <td style="padding: 8px; border: 1px solid #ddd;">{{ $timetable->timetable_classname }}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">{{ $timetable->timetable_year }}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">
                   <a href="{{ route('manage.timetable.list.show', $timetable->id) }}" style="display: inline-block; width: 24px; height: 24px; margin-right: 8px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                       <path d="M15.5 12a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"></path>
