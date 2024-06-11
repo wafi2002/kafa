@@ -92,29 +92,29 @@ class ManageResultController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'subject' => 'required|exists:subjects,id',
-        'mark' => 'required|numeric',
-        'grade' => 'required|string|max:2',
-    ]);
+    {
+        $request->validate([
+            'subject' => 'required|exists:subjects,id',
+            'mark' => 'required|numeric',
+            'grade' => 'required|string|max:2',
+        ]);
 
-    // Find the result by its ID
-    $result = Result::findOrFail($id);
+        // Find the result by its ID
+        $result = Result::findOrFail($id);
 
-    // Find the subject by its ID
-    $subject = Subject::findOrFail($request->subject);
+        // Find the subject by its ID
+        $subject = Subject::findOrFail($request->subject);
 
-    // Update the result attributes
-    $result->update([
-        'subjectName' => $subject->subjectName,
-        'resultMark' => $request->mark,
-        'grade' => $request->grade,
-    ]);
+        // Update the result attributes
+        $result->update([
+            'subjectName' => $subject->subjectName,
+            'resultMark' => $request->mark,
+            'grade' => $request->grade,
+        ]);
 
-    // Redirect back with a success message
-    return redirect()->route('students.search')->with('success', 'Result updated successfully!');
-}
+        // Redirect back with a success message
+        return redirect()->route('students.search')->with('success', 'Result updated successfully!');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -128,7 +128,7 @@ class ManageResultController extends Controller
     {
         return view('ManageStudentResult.Parents.parentSearch');
     }
-    
+
     public function searchStudentForm()
     {
         return view('ManageStudentResult.Teacher.searchstudent');
@@ -162,10 +162,25 @@ class ManageResultController extends Controller
         return view('ManageStudentResult.KAFA Admin.kafaSearch', compact('students', 'studentName'));
     }
 
+    public function viewKafaResult($studentId)
+    {
+        // Retrieve the results for the specified student_id
+        $results = Result::where('student_id', $studentId)->get();
+
+        // Pass the results to the view
+        return view('ManageStudentResult.MUIP Admin.kafaView', compact('results'));
+    }
+
     public function showMuipSearchForm()
     {
         return view('ManageStudentResult.MUIP Admin.muipSearch');
     }
+
+    public function showKafaSearchForm()
+    {
+        return view('ManageStudentResult.Kafa Admin.kafaSearch');
+    }
+
 
     public function searchMuip(Request $request)
     {
@@ -180,8 +195,17 @@ class ManageResultController extends Controller
 
         return view('ManageStudentResult.MUIP Admin.muipSearch', compact('students', 'studentName'));
     }
-    
-  
+
+    public function viewMuipResult($studentId)
+    {
+        // Retrieve the results for the specified student_id
+        $results = Result::where('student_id', $studentId)->get();
+
+        // Pass the results to the view
+        return view('ManageStudentResult.MUIP Admin.muipView', compact('results'));
+    }
+
+
     public function searchStudent(Request $request)
     {
         $request->validate([
@@ -208,56 +232,46 @@ class ManageResultController extends Controller
         return view('ManageStudentResult.Teacher.addResult', compact('student', 'subjects'));
 
         // Redirect back with a success message
-    return redirect()->route('results.add')->with('success', 'Result updated successfully!');
+        return redirect()->route('results.add')->with('success', 'Result updated successfully!');
     }
 
     public function viewResult($studentId)
-{
-    // Retrieve the results for the specified student_id
-    $results = Result::where('student_id', $studentId)->get();
+    {
+        // Retrieve the results for the specified student_id
+        $results = Result::where('student_id', $studentId)->get();
 
-    // Pass the results to the view
-    return view('ManageStudentResult.Teacher.viewResult', compact('results'));
-}
+        // Pass the results to the view
+        return view('ManageStudentResult.Teacher.viewResult', compact('results'));
+    }
 
-public function deleteResult($student_id, $result_id)
-{
-    // Find the result by ID
-    $result = Result::findOrFail($result_id);
+    public function deleteResult($student_id, $result_id)
+    {
+        // Find the result by ID
+        $result = Result::findOrFail($result_id);
 
-    // Delete the result
-    $result->delete();
+        // Delete the result
+        $result->delete();
 
-     // Find the student by ID
-     $student = Student::findOrFail($student_id);
+        // Find the student by ID
+        $student = Student::findOrFail($student_id);
 
-     // Fetch results associated with the student
-     $results = Result::where('student_id', $student_id)->get();
+        // Fetch results associated with the student
+        $results = Result::where('student_id', $student_id)->get();
 
-       // Return the deleteResult blade view with the result data
-       return view('ManageStudentResult.Teacher.deleteResult', compact('student', 'results'));
-}
+        // Return the deleteResult blade view with the result data
+        return view('ManageStudentResult.Teacher.deleteResult', compact('student', 'results'));
+    }
 
 
-public function showDeleteForm($id)
-{
-    // Find the student by ID
-    $student = Student::findOrFail($id);
+    public function showDeleteForm($id)
+    {
+        // Find the student by ID
+        $student = Student::findOrFail($id);
 
-    // Fetch results associated with the student
-    $results = Result::where('student_id', $id)->get();
+        // Fetch results associated with the student
+        $results = Result::where('student_id', $id)->get();
 
-    // Return the deleteResult blade view with the result data
-    return view('ManageStudentResult.Teacher.deleteResult', compact('student', 'results'));
-}
-
-public function viewKafaResult($studentId)
-{
-    // Retrieve the results for the specified student_id
-    $results = Result::where('student_id', $studentId)->get();
-
-    // Pass the results to the view
-    return view('ManageStudentResult.MUIP Admin.muipView', compact('results'));
-}
-
+        // Return the deleteResult blade view with the result data
+        return view('ManageStudentResult.Teacher.deleteResult', compact('student', 'results'));
+    }
 }

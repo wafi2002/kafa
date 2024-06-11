@@ -46,7 +46,15 @@ Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name
 
 Route::get('/muip/search', [ManageResultController::class, 'showMuipSearchForm'])->name('muip.showSearchForm');
 Route::post('/muip/search', [ManageResultController::class, 'searchMuip'])->name('muip.search');
-Route::get('/muip/search/{studentId}', [ManageResultController::class, 'viewKafaResult'])->name('muip.searchStudent');
+Route::get('/muip/search/{studentId}', [ManageResultController::class, 'viewMuipResult'])->name('muip.searchStudent');
+
+
+Route::get('/kafa/search', [ManageResultController::class, 'showKafaSearchForm'])->name('kafa.showSearchForm');
+Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name('kafa.search');
+Route::get('/kafa/search/{studentId}', [ManageResultController::class, 'viewKafaResult'])->name('kafa.searchStudent');
+
+
+
 
 
 
