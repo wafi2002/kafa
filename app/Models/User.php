@@ -21,6 +21,7 @@ class User extends Authenticatable
         'role',
         'phone',
         'password',
+        'profile_picture',
     ];
 
     /**
@@ -41,5 +42,10 @@ class User extends Authenticatable
     public function teacher()
     {
         return $this->hasOne(Teacher::class);
+    }
+
+    public function muipAdmin() // Corrected method name
+    {
+        return $this->hasOne(MuipAdmin::class);
     }
 }

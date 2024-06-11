@@ -52,9 +52,10 @@
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand">
                     <img src="{{ asset('images/logo.png') }}" height="45" alt="MDB Logo" loading="lazy" />
                 </a>
+
 
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">
@@ -83,11 +84,18 @@
                         <div class="position-sticky">
                             <div class="list-group list-group-flush mx-3 mt-2 custom-pt">
 
-                                <a class="nav-link d-flex justify-content-center align-items-center" href="#"
-                                    id="navbarDropdownMenuLink" role="button" aria-expanded="false">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                                        class="rounded-circle" height="130" alt="Avatar" loading="lazy" />
+                                <a class="nav-link d-flex justify-content-center align-items-center"
+                                    href="{{ route('profile.edit') }}" id="navbarDropdownMenuLink" role="button"
+                                    aria-expanded="false">
+                                    @if (Auth::user()->profile_picture)
+                                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
+                                            class="rounded-circle" height="160" width="160" alt="Avatar" loading="lazy" />
+                                    @else
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                                            class="rounded-circle" height="130" alt="Avatar" loading="lazy" />
+                                    @endif
                                 </a>
+
 
                                 <a href="#"
                                     class="list-group-item list-group-item-action py-2 ripple text-center justify-content-between mt-5"
@@ -98,7 +106,8 @@
                                     class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
                                     <span>Student Result</span>
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="#"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Timetable</span></a>
 
                                 <!-- Dropdown Menu -->
@@ -108,16 +117,20 @@
                                         Report
                                     </a>
                                     <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('report.ViewFinishActivityList')}}">Activity</a>
-                                        <a class="dropdown-item" href="{{ route('report.AcademicYearOption')}}">Academic</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('report.ViewFinishActivityList') }}">Activity</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('report.AcademicYearOption') }}">Academic</a>
                                     </div>
                                 </div>
                                 <!-- End Dropdown Menu -->
 
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="#"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Fee</span>
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="#"
+                                    class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Activity</span></a>
                             </div>
                         </div>

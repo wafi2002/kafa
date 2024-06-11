@@ -32,6 +32,10 @@ Route::get('KAFA/teacher/edit/{id}', [ManageProfileController::class, 'editTeach
 Route::put('KAFA/parent/{id}', [ManageProfileController::class, 'updateParent'])->name('parent.update');
 Route::put('KAFA/teacher/{id}', [ManageProfileController::class, 'updateTeacher'])->name('teacher.update');
 Route::delete('KAFA/profile/{id}', [ManageProfileController::class, 'delete'])->name('profile.delete');
+Route::get('/profile/edit', [ManageProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update', [ManageProfileController::class, 'update'])->name('profile.update');
+
+
 
 
 

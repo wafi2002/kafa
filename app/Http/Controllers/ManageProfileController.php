@@ -51,33 +51,55 @@ class ManageProfileController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function edit()
     {
-        //
+        $user = auth()->user();
+        $muipAdmin = $user->muipAdmin; // Access the muipAdmin relationship
+        return view('ManageProfile.Muip Admin.editProfile', compact('user', 'muipAdmin'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+
+    public function update(Request $request)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'newProfilePicture' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate uploaded image
+        ]);
+
+        // Logic to update user profile picture and gender
+        $user = auth()->user(); // Assuming the user is authenticated
+
+        try {
+            // Update user's name
+            $user->name = $request->input('name');
+
+            // Update user's profile picture if provided
+            if ($request->hasFile('newProfilePicture')) {
+                $newProfilePicturePath = $request->file('newProfilePicture')->store('profile_pictures', 'public');
+                $user->profile_picture = $newProfilePicturePath;
+            }
+
+            // Update user's gender if provided and the MuipAdmin relationship exists
+            if ($request->has('gender') && $user->muipAdmin) {
+                $user->muipAdmin->gender = $request->input('gender');
+                $user->muipAdmin->save();
+            }
+
+            $user->save();
+
+            // Redirect back to the profile edit page with success message
+            return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
+        } catch (\Exception $e) {
+            // Log the error or return an error response
+            return redirect()->route('profile.edit')->with('error', 'Failed to update profile.');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+
+
     public function editParent($id)
     {
         $parent = $this->getParent($id);
@@ -157,15 +179,6 @@ class ManageProfileController extends Controller
     }
 
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
     public function delete($id)
     {
         // Check if the ID belongs to a Parent
@@ -187,6 +200,4 @@ class ManageProfileController extends Controller
         // If no parent or teacher found with the given ID, return error
         return back()->with('error', 'User not found');
     }
-
-
 }
