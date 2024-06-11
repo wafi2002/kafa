@@ -28,7 +28,6 @@ Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])-
 
 Route::get('/result', [ManageResultController::class, 'index'])->name('result');
 Route::get('/results/create', [ManageResultController::class, 'create'])->name('results.create');
-Route::post('/results', [ManageResultController::class, 'store'])->name('results.store');
 
 Route::get('/students/search', [ManageResultController::class, 'searchStudentForm'])->name('students.searchForm');
 Route::post('/students/search', [ManageResultController::class, 'searchStudent'])->name('students.search');
@@ -37,8 +36,7 @@ Route::post('/results/store', [ManageResultController::class, 'store'])->name('r
 Route::get('/results/edit/{id}', [ManageResultController::class, 'edit'])->name('results.edit');
 Route::put('/results/update/{id}', [ManageResultController::class, 'update'])->name('results.update');
 Route::get('/results/view/{studentId}', [ManageResultController::class, 'viewResult'])->name('results.view');
-Route::get('/results/{id}/delete', [ManageResultController::class, 'showDeleteForm'])->name('results.showDeleteForm');
-Route::delete('/results/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResult'])->name('results.delete');
+Route::delete('/result/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResult'])->name('results.delete');
 
 Route::post('/parents/search', [ManageResultController::class, 'searchParent'])->name('parents.search');
 
@@ -54,6 +52,7 @@ Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name
 Route::get('/kafa/search/{studentId}', [ManageResultController::class, 'viewKafaResult'])->name('kafa.searchStudent');
 Route::get('/results/{id}/delete', [ManageResultController::class, 'showKafaDeleteForm'])->name('results.showKafaDeleteForm');
 Route::delete('/results/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResultkafa'])->name('results.deletekafa');
+Route::get('result/{id}/delete', [ManageResultController::class, 'showDeleteForm'])->name('results.showDeleteForm');
 
 
 
