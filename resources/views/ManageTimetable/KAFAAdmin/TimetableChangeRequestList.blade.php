@@ -8,15 +8,6 @@
       </div>
       <div class="card-body d-flex justify-content-center align-items-center">
         <div style="width: 100%;">
-            <div class="d-flex justify-content-end mb-3">
-                <a href="{{ route('manage.timetable.list.create') }}">
-                <button class="btn btn-primary bg-dark mr-2" style="margin-right: 10px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1.5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </button>
-                </a>
-            </div>
           <table class="table" style="width: 100%; border-collapse: collapse;">
             <thead class="thead-dark" style="background-color: #343a40; color: white;">
               <tr>
