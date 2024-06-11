@@ -6,7 +6,7 @@
       <div>CLASS TIMETABLE LIST</div>
   </div>
   <div class="card-body d-flex justify-content-between align-items-center">
-    <div>Class teacher: {{ $specificTimetable->first()->user->name }}</div>
+    <div>Class teacher: {{ $specificTimetable->user->name }}</div>
     <div>Class: {{ $timetable_classname }}</div>
 </div>
   <div class="card-body d-flex justify-content-center align-items-center">

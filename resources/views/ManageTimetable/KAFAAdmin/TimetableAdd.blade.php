@@ -41,7 +41,7 @@
                             @php
                                 $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
                                 $times = ['1', '2', '3', '4', '5', '6'];
-                                $subjects = ['LUGHATUL QURAN', 'AQIDAH', 'IBADAH', 'SIRAH', 'TILAWAH', 'JAWI', 'AMALI', 'TILAWAH']; // Replace with your subject options
+                                $subjects = ['LUGHATUL QURAN', 'AQIDAH', 'IBADAH', 'SIRAH', 'TILAWAH', 'JAWI', 'AMALI']; // Replace with your subject options
                             @endphp
 
                             @foreach($days as $day)
@@ -73,7 +73,7 @@
 
               <!-- Submit and Cancel buttons -->
               <div class="mt-3 d-flex justify-content-end">
-                <button type="submit" class="btn" style="border-radius: 5px; background-color: #343a40; color: white; margin-right: 10px;">Save</button>
+                <button type="submit" class="btn" style="border-radius: 5px; background-color: #343a40; color: white; margin-right: 10px;">Add</button>
                 <a href="javascript:history.back()" class="btn" style="border-radius: 5px; background-color: white; color: black; border: 2px solid #343a40;">Cancel</a>
             </div>
           </form>

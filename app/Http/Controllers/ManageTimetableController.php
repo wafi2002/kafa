@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Timetable;
+use App\Models\TimetableRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,24 @@ class ManageTimetableController extends Controller
      */
     public function index()
     {
-        $timetables = Timetable::all();
+        $user = Auth::user(); // Get the authenticated user
+        $role = $user->role; // Get the user's role
 
-        return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
+        if ($role == 'Teacher') {
+            $timetables = Timetable::all();
+
+            return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
+        } else if ($role == 'Parent') {
+            return view('ManageTimetable.Parent.TimetableList', compact('timetables'));
+        } else if ($role == 'Kafa') {
+            $timetables = Timetable::whereHas('requests', function ($query) {
+                $query->where('timetableID', 'pending'); // or any other condition you want to apply
+            })->get();
+            return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestList', compact('timetables'));
+        } else {
+            // Handle the case where the role is neither Teacher nor Parent
+            abort(403, 'Unauthorized action.');
+        }
     }
 
     /**
@@ -36,7 +52,7 @@ class ManageTimetableController extends Controller
 {
     // Validate the request data
     $rules = [
-        'class_teacher' => 'required',
+        'id' => 'required',
         'class_name' => 'required',
     ];
 
@@ -54,7 +70,7 @@ class ManageTimetableController extends Controller
 
     // Create the timetable
     $timetable = new Timetable();
-    $timetable->userID = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
+    $timetable->userID = $request->input('id'); // Get the selected userID from the class_teacher select tag
     $timetable->timetable_classname = $request->input('class_name');
     $timetable->timetable_year = now()->year; // Set the current year as the timetable_year
 
@@ -70,8 +86,8 @@ class ManageTimetableController extends Controller
 
     $timetable->save();
 
-    return redirect()->route('manage.timetable.list')
-        ->with('success', 'Timetable created successfully.');
+    // Redirect the user back to the timetable list page
+    return redirect()->route('manage.timetable.list')->with('success', 'Timetable created successfully.');
 }
 
     /**
@@ -103,6 +119,15 @@ class ManageTimetableController extends Controller
         // Handle the case where the role is neither Teacher nor Parent
         abort(403, 'Unauthorized action.');
     }
+}
+
+public function showRequest(Request $request, $id)
+{
+    // Retrieve the timetable request with the given $id
+    $timetableRequest = TimetableRequest::findOrFail($id);
+
+    // Return the view with the timetable request details
+    return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestView', compact('timetableRequest'));
 }
 
     /**
@@ -168,19 +193,19 @@ class ManageTimetableController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $timetables = Timetable::find($id);
-        $timetables->delete();
+    public function destroy($id)
+{
+    $timetable = Timetable::findOrFail($id);
+    $timetable->delete();
 
-        return redirect()->route('posts.index')
-            ->with('success', 'Timetable deleted successfully');
-    }
+    return redirect()->route('manage.timetable.list')->with('success', 'Timetable deleted successfully.');
+}
 
-    public function confirm()
-    {
-        return view('ManageTimetable.KAFAAdmin.TimetableDelete');
-    }
+public function confirm($id)
+{
+    $timetable = Timetable::findOrFail($id);
+    return view('ManageTimetable.KAFAAdmin.TimetableDelete', compact('timetable'));
+}
 
     public function teacherTemplateTimetable()
     {
@@ -208,5 +233,38 @@ class ManageTimetableController extends Controller
         // Handle the case where the role is neither Teacher nor Parent
         abort(403, 'Unauthorized action.');
     }
+}
+
+public function addrequest($timetableID)
+{
+    $userid = Auth::id(); // get the current user's ID
+    return view('ManageTimetable.Teacher.TimetableChangeRequest', compact('userid', 'timetableID'));
+}
+
+    public function storerequest(Request $request)
+{
+    // Validate the request data
+    $validated = $request->validate([
+        'day' => 'required|string',
+        'time' => 'required|string',
+        'subject' => 'required|string',
+        'comment' => 'nullable|string',
+    ]);
+
+    // Get the timetable ID from the request or default to a valid value
+    $timetableID = $request->input('timetableID');
+
+    // Create a new request entry
+    $timetableRequest = new TimetableRequest();
+    $timetableRequest->teacherID = Auth::id(); // Assuming the user ID is to be stored
+    $timetableRequest->timetableID = $timetableID; // set the timetable ID
+    $timetableRequest->request_day = $validated['day'];
+    $timetableRequest->request_time = $validated['time'];
+    $timetableRequest->request_subject = $validated['subject'];
+    $timetableRequest->request_reason = $validated['comment'];
+    $timetableRequest->save();
+
+    // Redirect to the timetable list with a success message
+    return redirect()->route('manage.timetable.list')->with('success', 'Timetable request created successfully!');
 }
 }

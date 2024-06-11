@@ -37,3 +37,9 @@ Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@
 Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@destroy')->name('manage.timetable.list.destroy');
 // confirmation to delete a timetable
 Route::get('/manage/timetable/{timetable}/confirm', ManageTimetableController::class .'@confirm')->name('manage.timetable.list.confirm');
+// returns the form for adding a timetable
+Route::get('/manage/timetable/req/{timetable}', ManageTimetableController::class . '@addrequest')->name('manage.timetable.list.reqform');
+// returns the form for adding a timetable
+Route::post('/manage/timetable/req', ManageTimetableController::class . '@storerequest')->name('manage.timetable.list.reqrecord');
+Route::get('/timetable-change-requests', ManageTimetableController::class . '@index')->name('manage.timetable.list.request');
+Route::get('/manage/timetable/{id}', ManageTimetableController::class . '@showRequest')->name('manage.timetable.list.showrequest');
