@@ -274,4 +274,35 @@ class ManageResultController extends Controller
         // Return the deleteResult blade view with the result data
         return view('ManageStudentResult.Teacher.deleteResult', compact('student', 'results'));
     }
+
+    public function deleteResultKafa($student_id, $result_id)
+    {
+        // Find the result by ID
+        $result = Result::findOrFail($result_id);
+
+        // Delete the result
+        $result->delete();
+
+        // Find the student by ID
+        $student = Student::findOrFail($student_id);
+
+        // Fetch results associated with the student
+        $results = Result::where('student_id', $student_id)->get();
+
+        // Return the deleteResult blade view with the result data
+        return view('ManageStudentResult.KAFA Admin.kafaDelete', compact('student', 'results'));
+    }
+
+
+    public function showkafaDeleteForm($id)
+    {
+        // Find the student by ID
+        $student = Student::findOrFail($id);
+
+        // Fetch results associated with the student
+        $results = Result::where('student_id', $id)->get();
+
+        // Return the deleteResult blade view with the result data
+        return view('ManageStudentResult.KAFA Admin.kafaDelete', compact('student', 'results'));
+    }
 }

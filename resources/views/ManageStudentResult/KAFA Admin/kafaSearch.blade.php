@@ -40,6 +40,7 @@
                 <td>{{ $student->studentYear }}</td>
                 <td class="text-end">
                     <a href="{{ route('kafa.searchStudent', $student->id) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('results.showKafaDeleteForm', $student->id) }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             @endforeach
