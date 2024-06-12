@@ -8,28 +8,46 @@ use Illuminate\Database\Eloquent\Model;
 class Timetable extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'title',
         'body',
     ];
 
+    /**
+     * Get the teacher associated with the timetable.
+     */
     public function teacher()
-{
-    return $this->belongsTo(User::class, 'teacherID', 'id');
-}
+    {
+        return $this->belongsTo(User::class, 'teacherID', 'id');
+    }
 
-public function user()
-{
-    return $this->belongsTo(User::class, 'userID');
-}
+    /**
+     * Get the user associated with the timetable.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID');
+    }
 
-public function timetableRequests()
-{
-    return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');
-}
+    /**
+     * Get the timetable requests associated with the timetable.
+     */
+    public function timetableRequests()
+    {
+        return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');
+    }
 
-public function requests()
-{
-    return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');
-}
+    /**
+     * Alias for timetableRequests() method.
+     */
+    public function requests()
+    {
+        return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');
+    }
 }

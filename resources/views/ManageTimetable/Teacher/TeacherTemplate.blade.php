@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Timetable Teacher</title>
     <link href="{{ asset('/') }}assets/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/parent.css">
@@ -52,11 +52,11 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Timetable</button>
                                 <div class="dropdown-content">
-                                  <a href="{{ route('manage.timetable.list') }}">Year 1</a>
-                                  <a href="{{ route('manage.timetable.list') }}">Year 2</a>
-                                  <a href="{{ route('manage.timetable.list') }}">Year 3</a>
-                                  <a href="{{ route('manage.timetable.list') }}">Year 4</a>
-                                  <a href="{{ route('manage.timetable.list') }}">Year 5</a>
+                                    <a href="{{ route('manage.timetable.list', ['year' => 1]) }}">Year 1</a>
+                                    <a href="{{ route('manage.timetable.list', ['year' => 2]) }}">Year 2</a>
+                                    <a href="{{ route('manage.timetable.list', ['year' => 3]) }}">Year 3</a>
+                                    <a href="{{ route('manage.timetable.list', ['year' => 4]) }}">Year 4</a>
+                                    <a href="{{ route('manage.timetable.list', ['year' => 5]) }}">Year 5</a>
                                 </div>
                               </div>
                         </li>
