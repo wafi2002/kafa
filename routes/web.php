@@ -24,11 +24,11 @@ Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])-
 
 Route::get('/manage/timetable/list', ManageTimetableController::class.'@timetablelist')->name('manage.timetable.list');
 // returns the form for adding a timetable
+// returns a page that shows a full timetable
+Route::get('/manage/timetable/{id}', ManageTimetableController::class .'@show')->name('manage.timetable.list.show');
 Route::get('/manage/timetable/create', ManageTimetableController::class . '@create')->name('manage.timetable.list.create');
 // adds a timetable to the database
 Route::post('/manage/timetable', ManageTimetableController::class .'@store')->name('manage.timetable.list.store');
-// returns a page that shows a full timetable
-Route::get('/manage/timetable/{id}', ManageTimetableController::class .'@show')->name('manage.timetable.list.show');
 // returns the form for editing a timetable
 Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::class .'@edit')->name('manage.timetable.list.edit');
 // updates a timetable
@@ -42,4 +42,4 @@ Route::get('/manage/timetable/req/{timetable}', ManageTimetableController::class
 // returns the form for adding a timetable
 Route::post('/manage/timetable/req', ManageTimetableController::class . '@storerequest')->name('manage.timetable.list.reqrecord');
 Route::get('/timetable-change-requests', ManageTimetableController::class . '@index')->name('manage.timetable.list.request');
-Route::get('/manage/timetable/{id}', ManageTimetableController::class . '@showRequest')->name('manage.timetable.list.showrequest');
+Route::get('/manage/timetable/request/{id}', ManageTimetableController::class . '@showRequest')->name('manage.timetable.list.showrequest');
