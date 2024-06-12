@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Timetable KAFA</title>
     <link href="{{ asset('/') }}assets/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/') }}assets/dist/css/adminstyle.css">
@@ -33,18 +33,22 @@
                         <span>Home</span>
                     </a>
                     <a href="#"
-                        class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
+                        class="list-group-item list-group-item-action py-2 ripple text-center justify-content-between">
                         <span>Student Result</span>
                     </a>
+                    <a href="{{ route('manage.timetable.list') }}"
+                        class="list-group-item list-group-item-action py-2 ripple text-center active">
+                        <span>Timetable</span>
+                    </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
-                        <span>Timetable</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
-                        <span>Report</span></a>
+                        <span>Report</span>
+                    </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Fee</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
-                        <span>Activity</span></a>
+                        <span>Activity</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -196,7 +200,7 @@
     {{-- Content --}}
     <div class="mt-2 ">
         <div class="container">
-            @yield('content')
+            @yield('kafapunya')
         </div>
     </div>
     {{-- End Content --}}
