@@ -112,7 +112,7 @@
                                     class="list-group-item list-group-item-action py-2 ripple text-center justify-content-between ">
                                     <span>Student Result</span>
                                 </a>
-                                <a href="#"
+                                <a href="{{ route('manage.timetable.list') }}"
                                     class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Timetable</span></a>
                                 <a href="{{ route('report.ViewActivityList') }}"
@@ -122,7 +122,7 @@
                                     class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Fee</span>
                                 </a>
-                                <a href="#"
+                                <a href="{{route('KAFAadmin.activities.search')}}"
                                     class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Activity</span></a>
                             </div>
