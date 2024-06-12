@@ -68,7 +68,7 @@
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Fee</span>
                     </a>
-                    <a href="{{route('MUIPadmin.activities.search')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                    <a href="" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Activity</span></a>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Fee</span>
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                                <a href="{{route('MUIPadmin.activities.search')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>Activity</span></a>
                             </div>
                         </div>

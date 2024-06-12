@@ -10,6 +10,7 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = ['activityName', 'activityDescription', 'activityDate', 'activityTime', 'activityTentative'];
+    protected $dates = ['date_time'];
 
     public function postMortems()
     {
