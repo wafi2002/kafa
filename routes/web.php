@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ManageProfileController;
 use App\Http\Controllers\ManageRegistrationController;
+use App\Http\Controllers\ManageResultController;
 use App\Http\Controllers\ManageReportController;
 use App\Http\Controllers\ManageTimetableController;
 use App\Http\Controllers\ManageActivityController;
@@ -23,6 +24,42 @@ Route::get('KAFA/Dashboard', [ManageRegistrationController::class, 'index'])->na
 Route::get('MUIP/Dashboard', [ManageRegistrationController::class, 'index'])->name('muip.dashboard')->middleware('muip');
 Route::get('Parent/Dashboard', [ManageRegistrationController::class, 'index'])->name('parent.dashboard')->middleware('parent');
 Route::get('Teacher/Dashboard', [ManageRegistrationController::class, 'index'])->name('teacher.dashboard')->middleware('teacher');
+
+
+Route::get('/result', [ManageResultController::class, 'index'])->name('result');
+Route::get('/results/create', [ManageResultController::class, 'create'])->name('results.create');
+
+Route::get('/students/search', [ManageResultController::class, 'searchStudentForm'])->name('students.searchForm');
+Route::post('/students/search', [ManageResultController::class, 'searchStudent'])->name('students.search');
+Route::get('/results/add/{studentId}', [ManageResultController::class, 'addResult'])->name('results.add');
+Route::post('/results/store', [ManageResultController::class, 'store'])->name('results.store');
+Route::get('/results/edit/{id}', [ManageResultController::class, 'edit'])->name('results.edit');
+Route::put('/results/update/{id}', [ManageResultController::class, 'update'])->name('results.update');
+Route::get('/results/view/{studentId}', [ManageResultController::class, 'viewResult'])->name('results.view');
+Route::delete('/result/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResult'])->name('results.delete');
+
+Route::get('/result/view/{studentId}', [ManageResultController::class, 'viewParent'])->name('parents.view');
+Route::get('/parents/search', [ManageResultController::class, 'parentSearch'])->name('parents.search');
+Route::post('/parent/search', [ManageResultController::class, 'searchParent'])->name('parents.studentSearch');
+
+Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name('kafa.search');
+
+Route::get('/muip/search', [ManageResultController::class, 'showMuipSearchForm'])->name('muip.showSearchForm');
+Route::post('/muip/search', [ManageResultController::class, 'searchMuip'])->name('muip.search');
+Route::get('/muip/search/{studentId}', [ManageResultController::class, 'viewMuipResult'])->name('muip.searchStudent');
+
+
+Route::get('/kafa/search', [ManageResultController::class, 'showKafaSearchForm'])->name('kafa.showSearchForm');
+Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name('kafa.search');
+Route::get('/kafa/search/{studentId}', [ManageResultController::class, 'viewKafaResult'])->name('kafa.searchStudent');
+Route::get('/results/{id}/delete', [ManageResultController::class, 'showKafaDeleteForm'])->name('results.showKafaDeleteForm');
+Route::delete('/results/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResultkafa'])->name('results.deletekafa');
+Route::get('result/{id}/delete', [ManageResultController::class, 'showDeleteForm'])->name('results.showDeleteForm');
+
+
+
+
+
 
 Route::get('KAFA/ParentTeacherList', [ManageProfileController::class, 'index'])->name('profile.ParentTeacherList');
 Route::get('KAFA/parent/{id}', [ManageProfileController::class, 'showParentDetail'])->name('profile.showParent');
@@ -85,18 +122,3 @@ Route::get('MUIP/YearOption/{year}', [ManageReportController::class, 'showStuden
 Route::get('MUIP/{id}/AcademicPerformance', [ManageReportController::class, 'viewAcademicPerformance'])->name('report.ViewAcademicPerformance');
 
 Route::get('/search-activities', [ManageActivityController::class, 'index'])->name('activities.search');
-
-// Timetable management routes
-Route::get('/manage/timetable/list', ManageTimetableController::class.'@index')->name('manage.timetable.list'); // Display the list of timetables
-Route::get('/manage/timetable/{id}', ManageTimetableController::class .'@display')->name('manage.timetable.list.show'); // Display a specific timetable
-Route::get('/manage/timetable/list/create', ManageTimetableController::class . '@add')->name('manage.timetable.list.create'); // Show form for creating a timetable
-Route::post('/manage/timetable', ManageTimetableController::class .'@store')->name('manage.timetable.list.store'); // Store a new timetable
-Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::class .'@edit')->name('manage.timetable.list.edit'); // Show form for editing a timetable
-Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@update')->name('manage.timetable.list.update'); // Update a timetable
-Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@delete')->name('manage.timetable.list.destroy'); // Delete a timetable
-Route::get('/manage/timetable/{timetable}/confirm', ManageTimetableController::class .'@confirm')->name('manage.timetable.list.confirm'); // Confirmation for deleting a timetable
-Route::get('/manage/timetable/req/{timetable}', ManageTimetableController::class . '@addRequest')->name('manage.timetable.list.reqform'); // Show form for adding a timetable request
-Route::post('/manage/timetable/req', ManageTimetableController::class . '@storerequest')->name('manage.timetable.list.reqrecord'); // Store a new timetable request
-Route::get('/request/timetable/lists', ManageTimetableController::class . '@displayRequestList')->name('manage.timetable.list.request'); // Display list of timetable requests
-Route::get('/manage/timetable/request/{id}', ManageTimetableController::class . '@displayRequest')->name('manage.timetable.list.showrequest'); // Display a specific timetable request
-Route::delete('manage/timetable/request/delete/{requestID}', ManageTimetableController::class .'@deleteRequest')->name('manage.timetable.requestlist.delete'); // Delete a timetable request

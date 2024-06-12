@@ -10,9 +10,11 @@ class Result extends Model
     use HasFactory;
 
     protected $fillable = [
+        'student_id',
+        'studentName',
+        'subjectName',
         'resultMark',
-        'subject_id',
-        'studentIC',
+        'grade',
     ];
 
     public function subject()
