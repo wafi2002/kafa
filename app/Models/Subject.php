@@ -13,10 +13,8 @@ class Subject extends Model
         'subjectName',
     ];
 
-    public function subject()
+    public function results()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->hasMany(Result::class, 'subject_id'); // Assuming 'subject_id' is the foreign key in the 'results' table
     }
-
-
 }

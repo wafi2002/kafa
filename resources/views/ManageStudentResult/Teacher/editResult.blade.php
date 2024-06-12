@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2>Edit Result for {{ $result->studentName }}</h2>
+    <h2>Edit Result for {{ $student->studentName }}</h2>
 
     <!-- Edit Result Form -->
     <form action="{{ route('results.update', $result->id) }}" method="POST">
@@ -10,12 +10,12 @@
         @method('PUT') <!-- Method to specify HTTP PUT for update -->
 
         <!-- Hidden input field for student ID -->
-        <input type="hidden" id="studentId" name="studentId" value="{{ $result->student_id }}">
+        <input type="hidden" id="studentIC" name="studentIC" value="{{ $student->studentIC }}">
 
         <!-- Input field for student name (readonly) -->
         <div class="mb-3">
             <label for="studentName" class="form-label">Student Name</label>
-            <input type="text" class="form-control" id="studentName" name="studentName" value="{{ $result->studentName }}" readonly>
+            <input type="text" class="form-control" id="studentName" name="studentName" value="{{ $student->studentName }}" readonly>
         </div>
 
         <!-- Dropdown for selecting subject -->

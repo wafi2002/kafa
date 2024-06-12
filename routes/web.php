@@ -31,12 +31,12 @@ Route::get('/results/create', [ManageResultController::class, 'create'])->name('
 
 Route::get('/students/search', [ManageResultController::class, 'searchStudentForm'])->name('students.searchForm');
 Route::post('/students/search', [ManageResultController::class, 'searchStudent'])->name('students.search');
-Route::get('/results/add/{studentId}', [ManageResultController::class, 'addResult'])->name('results.add');
+Route::get('/results/add/{studentIC}', [ManageResultController::class, 'addResult'])->name('results.add');
 Route::post('/results/store', [ManageResultController::class, 'store'])->name('results.store');
-Route::get('/results/edit/{id}', [ManageResultController::class, 'edit'])->name('results.edit');
-Route::put('/results/update/{id}', [ManageResultController::class, 'update'])->name('results.update');
-Route::get('/results/view/{studentId}', [ManageResultController::class, 'viewResult'])->name('results.view');
-Route::delete('/result/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResult'])->name('results.delete');
+Route::get('/results/edit/{studentIC}', [ManageResultController::class, 'edit'])->name('results.edit');
+Route::put('/results/update/{studentIC}', [ManageResultController::class, 'update'])->name('results.update');
+Route::get('/results/view/{studentIC}', [ManageResultController::class, 'viewResult'])->name('results.view');
+Route::delete('/result/delete/{studentIC}/{result_id}', [ManageResultController::class, 'deleteResult'])->name('results.delete');
 
 Route::get('/result/view/{studentId}', [ManageResultController::class, 'viewParent'])->name('parents.view');
 Route::get('/parents/search', [ManageResultController::class, 'parentSearch'])->name('parents.search');
@@ -51,9 +51,9 @@ Route::get('/muip/search/{studentId}', [ManageResultController::class, 'viewMuip
 
 Route::get('/kafa/search', [ManageResultController::class, 'showKafaSearchForm'])->name('kafa.showSearchForm');
 Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name('kafa.search');
-Route::get('/kafa/search/{studentId}', [ManageResultController::class, 'viewKafaResult'])->name('kafa.searchStudent');
+Route::get('/kafa/search/{studentIC}', [ManageResultController::class, 'viewKafaResult'])->name('kafa.searchStudent');
 Route::get('/results/{id}/delete', [ManageResultController::class, 'showKafaDeleteForm'])->name('results.showKafaDeleteForm');
-Route::delete('/results/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResultkafa'])->name('results.deletekafa');
+Route::delete('/results/delete/{studentIC}/{result_id}', [ManageResultController::class, 'deleteResultkafa'])->name('results.deletekafa');
 Route::get('result/{id}/delete', [ManageResultController::class, 'showDeleteForm'])->name('results.showDeleteForm');
 
 

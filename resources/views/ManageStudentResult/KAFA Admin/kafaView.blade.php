@@ -20,7 +20,7 @@
                     <tbody>
                         @foreach($results as $result) <!-- Loop through each result -->
                             <tr>
-                                <td>{{ $result->subjectName }}</td>
+                                <td>{{ $result->subject->subjectName }}</td>
                                 <td>{{ $result->resultMark }}</td>
                                 <td>{{ $result->grade }}</td>
                             </tr>

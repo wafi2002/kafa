@@ -27,7 +27,7 @@
                             <td>{{ $result->grade }}</td>
                             <td>
                                 <!-- Form to delete a result -->
-                                <form action="{{ route('results.delete', ['student_id' => $student->id, 'result_id' => $result->id]) }}" method="POST">
+                                <form action="{{ route('results.delete', ['studentIC' => $student->studentIC, 'result_id' => $result->id]) }}" method="POST">
                                     @csrf <!-- CSRF protection token -->
                                     @method('DELETE') <!-- Method to specify HTTP DELETE -->
                                     <button type="submit" class="btn btn-danger">Delete</button> <!-- Delete button -->

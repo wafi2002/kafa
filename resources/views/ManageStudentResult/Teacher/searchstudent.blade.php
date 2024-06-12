@@ -38,15 +38,15 @@
         <tbody>
             @foreach($students as $student) <!-- Loop through each student -->
             <tr style="background-color: #808080; border: 1px solid #000;">
-                <td>{{ $student->id }}</td>
+                <td>{{ $student->studentIC }}</td>
                 <td>{{ $student->studentName }}</td>
                 <td>{{ $student->studentYear }}</td>
                 <td class="text-end">
                     <!-- Action buttons for each student -->
-                    <a href="{{ route('results.view', $student->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('results.add', $student->id) }}" class="btn btn-success">Add</a>
-                    <a href="{{ route('results.edit', $student->id) }}" class="btn btn-warning">Edit</a>
-                    <a href="{{ route('results.showDeleteForm', $student->id) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ route('results.view', $student->studentIC) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('results.add', $student->studentIC) }}" class="btn btn-success">Add</a>
+                    <a href="{{ route('results.edit', $student->studentIC) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('results.showDeleteForm', $student->studentIC) }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             @endforeach

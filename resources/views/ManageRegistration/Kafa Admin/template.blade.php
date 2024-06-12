@@ -73,12 +73,10 @@
                                 </a>
                                 <a href="{{ route('kafa.showSearchForm') }}"
                                     class="list-group-item list-group-item-action py-2 ripple text-center active justify-content-between ">
+                                    <span>Student Result</span>
                                 <a href="{{ route('profile.ParentTeacherList') }}"
                                     class="list-group-item list-group-item-action py-2 ripple text-center ">
                                     <span>User Profile</span></a>
-                                <a href="#"
-                                    class="list-group-item list-group-item-action py-2 ripple text-center justify-content-between ">
-                                    <span>Student Result</span>
                                 </a>
                                 <a href="{{ route('manage.timetable.list') }}"
                                     class="list-group-item list-group-item-action py-2 ripple text-center ">
