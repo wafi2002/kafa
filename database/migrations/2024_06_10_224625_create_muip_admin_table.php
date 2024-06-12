@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('muip_admins', function (Blueprint $table) {
             $table->id();
-            $table->string('activityName');
-            $table->string('activityDescription');
-            $table->date('activityDate');
-            $table->time('activityTime');
-            $table->string('activityTentative');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('gender');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -27,6 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('muip_admins');
     }
 };
+

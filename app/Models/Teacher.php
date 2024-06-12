@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Result extends Model
+class Teacher extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'resultMark',
-        'subject_id',
-        'studentIC',
+        'fullname',
+        'gender',
+        'address',
+        'educationLevel',
+
     ];
 
-    public function subject()
+    public function user()
     {
-        return $this->belongsTo(Subject::class, 'subject_id');
+        return $this->belongsTo(User::class);
     }
-
 }

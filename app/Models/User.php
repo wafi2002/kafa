@@ -15,7 +15,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
         'name',
@@ -23,20 +23,20 @@ class User extends Authenticatable
         'role',
         'phone',
         'password',
-        'password-confirm',
+        'profile_picture',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
+/**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -44,5 +44,19 @@ class User extends Authenticatable
     public function timetables()
     {
         return $this->hasMany(Timetable::class, 'userID');
+    }
+    public function parent()
+    {
+        return $this->hasOne(Parents::class);
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function muipAdmin() // Corrected method name
+    {
+        return $this->hasOne(MuipAdmin::class);
     }
 }
