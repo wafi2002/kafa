@@ -42,7 +42,7 @@
                             <a class="nav-link" id="pills-result-tab" href="{{ route('parents.search') }}" role="tab" aria-controls="pills-result" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-timetable-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-timetable" aria-selected="false">Timetable</a>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="pills-payment-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-payment" aria-selected="false">Payment</a>

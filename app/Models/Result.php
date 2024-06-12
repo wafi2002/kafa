@@ -16,4 +16,10 @@ class Result extends Model
         'resultMark',
         'grade',
     ];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
 }

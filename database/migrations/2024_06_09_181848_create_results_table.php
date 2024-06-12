@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subjectID')->constrained('subjectIDs')->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->string('studentIC');
             $table->integer('resultMark');
             // Add any other columns you need for the results table

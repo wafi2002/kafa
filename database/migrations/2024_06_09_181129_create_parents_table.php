@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
             $table->string('parentIC');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('phoneNo');
             $table->string('address');
             $table->string('relation');
