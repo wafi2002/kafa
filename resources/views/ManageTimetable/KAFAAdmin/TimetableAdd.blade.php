@@ -9,22 +9,24 @@
         <div class="card-body d-flex justify-content-between align-items-center">
             <div>
                 <form method="POST" action="{{ route('manage.timetable.list.store') }}">
-                <label for="class_teacher">Class Teacher:</label>
-                <select name="class_teacher" id="class_teacher" class="form-control">
-                    <option value="">Select Class Teacher</option>
-                    @foreach($teachers as $teacher)
-                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <label for="class_name">Class Name:</label>
-                <input type="text" name="class_name" id="class_name" class="form-control">
-            </div>
-        </div>
-        <div class="card-body d-flex justify-content-center align-items-center">
-            <div style="width: 100%;">
                     @csrf
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="class_teacher">Class Teacher:</label>
+                            <select name="class_teacher" id="class_teacher" class="form-control">
+                                <option value="">Select Class Teacher</option>
+                                @foreach($teachers as $teacher)
+                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="class_name">Class Name:</label>
+                            <input type="text" name="class_name" id="class_name" class="form-control">
+                        </div>
+                    </div>
+                
                     <table class="table" style="width: 100%; border-collapse: collapse;">
                         <thead class="thead-dark" style="background-color: #343a40; color: white;">
                             <tr>
@@ -39,20 +41,20 @@
                         </thead>
                         <tbody>
                             @php
-                                $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-                                $times = ['1', '2', '3', '4', '5', '6'];
+                                $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+                                $times = [1, 2, 3, 4, 5, 6];
                                 $subjects = ['LUGHATUL QURAN', 'AQIDAH', 'IBADAH', 'SIRAH', 'TILAWAH', 'JAWI', 'AMALI']; // Replace with your subject options
                             @endphp
-
+                
                             @foreach($days as $day)
                                 <tr style="background-color: {{ $loop->even ? '#f2f2f2' : '#e6f3ff' }};">
-                                    <th scope="row" style="padding: 8px; border: 2px solid #343c44;">{{ $day }}</th>
+                                    <th scope="row" style="padding: 8px; border: 2px solid #343c44;">{{ ucfirst($day) }}</th>
                                     @foreach($times as $time)
                                         @if($time == 4)
                                             <td style="padding: 8px; border: 2px solid #343c44; background-color: #343c44; color: white;">Recess</td>
                                         @elseif(in_array($time, [1, 2, 3, 5, 6]))
                                             @php
-                                                $field = strtolower($day) . $time;
+                                                $field = $day . $time;
                                             @endphp
                                             <td style="padding: 8px; border: 2px solid #343c44;">
                                                 <select name="{{ $field }}" class="form-control">
@@ -70,15 +72,15 @@
                             @endforeach
                         </tbody>
                     </table>
-
-              <!-- Submit and Cancel buttons -->
-              <div class="mt-3 d-flex justify-content-end">
-                <button type="submit" class="btn" style="border-radius: 5px; background-color: #343a40; color: white; margin-right: 10px;">Add</button>
-                <a href="javascript:history.back()" class="btn" style="border-radius: 5px; background-color: white; color: black; border: 2px solid #343a40;">Cancel</a>
+                
+                    <!-- Submit and Cancel buttons -->
+                    <div class="mt-3 d-flex justify-content-end">
+                        <button type="submit" class="btn" style="border-radius: 5px; background-color: #343a40; color: white; margin-right: 10px;">Add</button>
+                        <a href="javascript:history.back()" class="btn" style="border-radius: 5px; background-color: white; color: black; border: 2px solid #343a40;">Cancel</a>
+                    </div>
+                </form>
             </div>
-          </form>
-      </div>
-  </div>
-</div>
+        </div>
+    </div>
 </div>
 @endsection

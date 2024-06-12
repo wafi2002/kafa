@@ -11,7 +11,7 @@
             <thead class="thead-dark" style="background-color: #343a40; color: white;">
                 <tr>
                     <th scope="col" style="padding: 8px; border: 1px solid #ddd;">No</th>
-                    <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Class Name</th>
+                    <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Class</th>
                     <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Year</th>
                     <th scope="col" style="padding: 8px; border: 1px solid #ddd;">Operation</th>
                 </tr>

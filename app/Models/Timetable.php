@@ -22,6 +22,12 @@ public function user()
 {
     return $this->belongsTo(User::class, 'userID');
 }
+
+public function timetableRequests()
+{
+    return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');
+}
+
 public function requests()
 {
     return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');

@@ -3,9 +3,6 @@
 @section('kafapunya')
 <div class="container">
     <div class="card" style="margin-left: auto; margin-right: auto; width: 70%; margin-top: 20px;">
-        <div class="card-header">
-            <div>CLASS TIMETABLE LIST</div>
-        </div>
         <div class="card-body d-flex justify-content-between align-items-center">
             <div>
                 <form method="POST" action="{{ route('manage.timetable.list.update', $timetable) }}">

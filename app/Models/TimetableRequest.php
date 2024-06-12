@@ -16,9 +16,9 @@ class TimetableRequest extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'userID');
+        return $this->belongsTo(User::class, 'teacherID', 'id');
     }
-
+    
     public $timestamps = false;
 
     protected $fillable = [
@@ -32,4 +32,16 @@ class TimetableRequest extends Model
 {
     return $this->belongsTo(Timetable::class, 'timetableID', 'id');
 }
+// Define the table if it's not the plural form of the model name
+protected $table = 'timetable_requests';
+
+// Specify the primary key
+protected $primaryKey = 'requestID';
+
+// If the primary key is not an auto-incrementing integer
+public $incrementing = false;
+
+// If the primary key is not an integer
+protected $keyType = 'string';
+
 }

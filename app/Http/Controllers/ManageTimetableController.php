@@ -8,38 +8,53 @@ use App\Models\TimetableRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ManageTimetableController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $user = Auth::user(); // Get the authenticated user
-        $role = $user->role; // Get the user's role
+    public function index(Request $request)
+{
+    $user = Auth::user(); // Get the authenticated user
+    $role = $user->role; // Get the user's role
+    
+    $searchTerm = $request->input('search');
 
-        if ($role == 'Teacher') {
-            $timetables = Timetable::all();
-
-            return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
-        } else if ($role == 'Parent') {
-            return view('ManageTimetable.Parent.TimetableList', compact('timetables'));
-        } else if ($role == 'Kafa') {
-            $timetables = Timetable::whereHas('requests', function ($query) {
-                $query->where('timetableID', 'pending'); // or any other condition you want to apply
+    if ($role == 'Teacher') {
+        $timetables = Timetable::with('user')
+            ->where('userID', $user->id)
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                return $query->where('timetable_classname', 'like', '%'. $searchTerm. '%');
+            })
+            ->get(); // Fetch timetables related to the authenticated user
+    } else if ($role == 'Parent') {
+        $timetables = Timetable::when($searchTerm, function ($query) use ($searchTerm) {
+                return $query->where('timetable_classname', 'like', '%'. $searchTerm. '%');
             })->get();
-            return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestList', compact('timetables'));
-        } else {
-            // Handle the case where the role is neither Teacher nor Parent
-            abort(403, 'Unauthorized action.');
-        }
+    } else if ($role == 'Kafa') {
+        $timetables = Timetable::when($searchTerm, function ($query) use ($searchTerm) {
+                return $query->where('timetable_classname', 'like', '%'. $searchTerm. '%');
+            })->get();
+    } else {
+        // Handle the case where the role is neither Teacher nor Parent
+        abort(403, 'Unauthorized action.');
     }
+
+    if ($role == 'Teacher') {
+        return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
+    } else if ($role == 'Parent') {
+        return view('ManageTimetable.Parent.TimetableList', compact('timetables'));
+    } else if ($role == 'Kafa') {
+        return view('ManageTimetable.KAFAAdmin.TimetableList', compact('timetables'));
+    }
+}
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function add()
     {
         $teachers = User::where('role', 'Teacher')->get(); // assuming you have a User model and a 'role' field in your users table
         return view('ManageTimetable.KAFAAdmin.TimetableAdd', compact('teachers'));
@@ -52,16 +67,16 @@ class ManageTimetableController extends Controller
 {
     // Validate the request data
     $rules = [
-        'id' => 'required',
+        'class_teacher' => 'required',
         'class_name' => 'required',
     ];
 
     $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-    $times = [1, 2, 3, 4, 5];
+    $times = [1, 2, 3, 4, 5, 6];
 
     foreach ($days as $day) {
         foreach ($times as $time) {
-            $field = $day. $time;
+            $field = $day . $time;
             $rules[$field] = 'nullable'; // make the subject fields optional
         }
     }
@@ -70,13 +85,13 @@ class ManageTimetableController extends Controller
 
     // Create the timetable
     $timetable = new Timetable();
-    $timetable->userID = $request->input('id'); // Get the selected userID from the class_teacher select tag
+    $timetable->userID = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
     $timetable->timetable_classname = $request->input('class_name');
     $timetable->timetable_year = now()->year; // Set the current year as the timetable_year
 
     foreach ($days as $day) {
         foreach ($times as $time) {
-            $field = $day. $time;
+            $field = $day . $time;
             $subject = $request->input($field);
             if ($subject) {
                 $timetable->$field = $subject; // Store the subject data in the timetable model
@@ -93,7 +108,7 @@ class ManageTimetableController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function display(string $id)
     {
     $user = Auth::user(); // Get the authenticated user
     $role = $user->role; // Get the user's role
@@ -121,18 +136,7 @@ class ManageTimetableController extends Controller
     }
 }
 
-public function showRequest(Request $request, $id)
-{
-    // Retrieve the timetable request with the given $id
-    $timetableRequest = TimetableRequest::findOrFail($id);
 
-    // Return the view with the timetable request details
-    return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestView', compact('timetableRequest'));
-}
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
 {
     // Find the timetable record by its ID
@@ -190,15 +194,23 @@ public function showRequest(Request $request, $id)
         ->with('success', 'Timetable updated successfully.');
 }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+public function delete($id)
 {
-    $timetable = Timetable::findOrFail($id);
-    $timetable->delete();
+    try {
+        // Disable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-    return redirect()->route('manage.timetable.list')->with('success', 'Timetable deleted successfully.');
+        $timetable = Timetable::findOrFail($id);
+        $timetable->delete();
+
+        return redirect()->route('manage.timetable.list')->with('success', 'Timetable deleted successfully.');
+    } catch (\Exception $e) {
+        // Handle any exceptions
+        return back()->withErrors(['error' => 'Failed to delete timetable.']);
+    } finally {
+        // Re-enable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+    }
 }
 
 public function confirm($id)
@@ -215,27 +227,9 @@ public function confirm($id)
     {
         return view('ManageTimetable.Parent.ParentTemplate');
     }
-    public function timetablelist()
-{
-    $user = Auth::user(); // Get the authenticated user
-    $role = $user->role; // Get the user's role
     
-    $timetables = Timetable::with('user')->where('userID', $user->id)->get(); // Fetch timetables related to the authenticated user
-    $timetables1 = Timetable::all();
 
-    if ($role == 'Teacher') {
-        return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
-    } else if ($role == 'Parent') {
-        return view('ManageTimetable.Parent.TimetableList', compact('timetables','timetables1'));
-    } else if ($role == 'Kafa') {
-        return view('ManageTimetable.KAFAAdmin.TimetableList', compact('timetables','timetables1'));
-    } else {
-        // Handle the case where the role is neither Teacher nor Parent
-        abort(403, 'Unauthorized action.');
-    }
-}
-
-public function addrequest($timetableID)
+public function addRequest($timetableID)
 {
     $userid = Auth::id(); // get the current user's ID
     return view('ManageTimetable.Teacher.TimetableChangeRequest', compact('userid', 'timetableID'));
@@ -267,4 +261,21 @@ public function addrequest($timetableID)
     // Redirect to the timetable list with a success message
     return redirect()->route('manage.timetable.list')->with('success', 'Timetable request created successfully!');
 }
+
+public function displayRequestList(Request $request)
+{
+    $timetables = Timetable::whereHas('timetableRequests')->get();
+
+    return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestList', compact('timetables'));
+}
+
+public function displayRequest(Request $request, $requestID)
+{
+    // Retrieve the timetable request with the given requestID, including related user data
+    $timetableRequest = TimetableRequest::with('user')->findOrFail($requestID);
+
+    // Return the view with the timetable request details
+    return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestView', compact('timetableRequest'));
+}
+
 }
