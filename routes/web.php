@@ -39,6 +39,39 @@ Route::put('/profile/update', [ManageProfileController::class, 'update'])->name(
 
 
 
+Route::get('/manage/timetable/teacher', ManageTimetableController::class.'@teacherTemplateTimetable')->name('manage.timetable.teacher');
+Route::get('/manage/timetable/list', ManageTimetableController::class.'@timetablelist')->name('manage.timetable.list');
+// returns the form for adding a timetable
+Route::get('/manage/timetable/create', ManageTimetableController::class . '@create')->name('manage.timetable.list.create');
+// adds a timetable to the database
+Route::post('/manage/timetable', ManageTimetableController::class .'@store')->name('manage.timetable.list.store');
+// returns a page that shows a full timetable
+Route::get('/manage/timetable/{id}', ManageTimetableController::class .'@show')->name('manage.timetable.list.show');
+// returns the form for editing a timetable
+Route::get('/manage/timetable/{timetable}/edit', ManageTimetableController::class .'@edit')->name('manage.timetable.list.edit');
+// updates a timetable
+Route::put('/manage/timetable/{timetable}', ManageTimetableController::class .'@update')->name('manage.timetable.list.update');
+// deletes a timetable
+Route::delete('/manage/timetable/{timetable}', ManageTimetableController::class .'@destroy')->name('manage.timetable.list.destroy');
+
+Route::get('Teacher/try', [ManageActivityController::class, 'index'])->name('teacher.try');
+
+Route::get('/search', [ManageActivityController::class, 'index'])->name('activities.search');
+Route::get('/search/{id}', [ManageActivityController::class, 'show'])->name('activities.show');
+Route::get('/activities/create', [ManageActivityController::class, 'create'])->name('activities.create');
+Route::post('/activities', [ManageActivityController::class, 'store'])->name('activities.store');
+Route::get('/activities/{id}/', [ManageActivityController::class, 'edit'])->name('activities.edit');
+Route::put('/activities/{id}', [ManageActivityController::class, 'update'])->name('activities.update');
+Route::delete('/activities/{id}', [ManageActivityController::class, 'destroy'])->name('activities.destroy');
+
+Route::get('/KAFAadminsearch', [ManageActivityController::class, 'KAFAindex'])->name('KAFAadmin.activities.search');
+Route::get('/KAFAadminsearch/{id}', [ManageActivityController::class, 'KAFAshow'])->name('KAFAadmin.activities.show');
+
+Route::get('/MUIPadminsearch', [ManageActivityController::class, 'MUIPindex'])->name('MUIPadmin.activities.search');
+Route::get('/MUIPadminsearch/{id}', [ManageActivityController::class, 'MUIPshow'])->name('MUIPadmin.activities.show');
+
+Route::get('/Parentsearch', [ManageActivityController::class, 'Parentindex'])->name('Parent.activities.search');
+Route::get('/Parentsearch/{id}', [ManageActivityController::class, 'Parentshow'])->name('Parent.activities.show');
 
 Route::get('KAFA/ViewActivityList', [ManageReportController::class, 'index'])->name('report.ViewActivityList');
 Route::get('KAFA/ViewActivityDetail/{id}', [ManageReportController::class, 'show'])->name('report.ViewActivityDetail');
