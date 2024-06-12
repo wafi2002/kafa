@@ -36,9 +36,6 @@ Route::get('/profile/edit', [ManageProfileController::class, 'edit'])->name('pro
 Route::put('/profile/update', [ManageProfileController::class, 'update'])->name('profile.update');
 
 
-
-
-
 Route::get('/manage/timetable/teacher', ManageTimetableController::class.'@teacherTemplateTimetable')->name('manage.timetable.teacher');
 Route::get('/manage/timetable/list', ManageTimetableController::class.'@timetablelist')->name('manage.timetable.list');
 // returns the form for adding a timetable
