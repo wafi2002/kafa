@@ -244,6 +244,16 @@ class ManageResultController extends Controller
         return view('ManageStudentResult.Teacher.viewResult', compact('results'));
     }
 
+    public function viewParent($studentId)
+    {
+        // Retrieve the results for the specified student_id
+        $results = Result::where('student_id', $studentId)->get();
+
+        // Pass the results to the view
+        return view('ManageStudentResult.Parents.parentView', compact('results'));
+    }
+
+
     public function deleteResult($student_id, $result_id)
     {
         // Find the result by ID

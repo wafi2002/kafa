@@ -38,7 +38,9 @@ Route::put('/results/update/{id}', [ManageResultController::class, 'update'])->n
 Route::get('/results/view/{studentId}', [ManageResultController::class, 'viewResult'])->name('results.view');
 Route::delete('/result/delete/{student_id}/{result_id}', [ManageResultController::class, 'deleteResult'])->name('results.delete');
 
-Route::post('/parents/search', [ManageResultController::class, 'searchParent'])->name('parents.search');
+Route::get('/result/view/{studentId}', [ManageResultController::class, 'viewParent'])->name('parents.view');
+Route::get('/parents/search', [ManageResultController::class, 'parentSearch'])->name('parents.search');
+Route::post('/parent/search', [ManageResultController::class, 'searchParent'])->name('parents.studentSearch');
 
 Route::post('/kafa/search', [ManageResultController::class, 'searchKafa'])->name('kafa.search');
 

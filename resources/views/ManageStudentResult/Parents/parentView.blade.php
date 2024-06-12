@@ -1,9 +1,9 @@
-@extends('ManageRegistration.Teacher.template')
+@extends('ManageRegistration.Parent.template')
 
 @section('content')
 <div class="container mt-5">
     <h2>Student Results</h2>
-    
+
     <!-- Card to display the results table -->
     <div class="card">
         <div class="card-body">
@@ -19,10 +19,11 @@
                     </thead>
                     <tbody>
                         @foreach($results as $result) <!-- Loop through each result -->
-                            <td>{{ $result->subjectName }}</td>
-                            <td>{{ $result->resultMark }}</td>
-                            <td>{{ $result->grade }}</td>
-                        </tr>
+                            <tr>
+                                <td>{{ $result->subjectName }}</td>
+                                <td>{{ $result->resultMark }}</td>
+                                <td>{{ $result->grade }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
