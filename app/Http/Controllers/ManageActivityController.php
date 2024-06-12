@@ -8,9 +8,8 @@ use App\Models\Activity;
 
 class ManageActivityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index()
     {
         $activities = Activity::all();
@@ -131,5 +130,4 @@ class ManageActivityController extends Controller
         $activity = Activity::findOrFail($id);
         return view('ManageKAFAactivity.Parent.ViewActivityDetail', ['activity' => $activity]);
     }
-
 }
