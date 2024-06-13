@@ -313,27 +313,23 @@ class ManageTimetableController extends Controller
      *
      * @param Request $request The HTTP request containing the request data
      */
-    public function storerequest(Request $request)
+    public function storeRequest(Request $request)
     {
         // Validate the request data to ensure it meets the required format
         $validated = $request->validate([
-            'day' => 'equired|string', // Day of the week (e.g. Monday, Tuesday, etc.)
-            'time' => 'equired|string', // Time of the day (e.g. 9:00 AM, 2:00 PM, etc.)
-            'ubject' => 'equired|string', // Subject of the timetable request (e.g. Math, English, etc.)
+            'day' => 'required|string', // Day of the week (e.g. Monday, Tuesday, etc.)
+            'time' => 'required|string', // Time of the day (e.g. 9:00 AM, 2:00 PM, etc.)
+            'subject' => 'required|string', // Subject of the timetable request (e.g. Math, English, etc.)
             'comment' => 'nullable|string', // Optional comment or reason for the request
         ]);
-
-        // Get the timetable ID from the request, defaulting to a valid value if not provided
-        $timetableID = $request->input('timetableID');
-
-        // Create a new TimetableRequest model instance
+    
         $timetableRequest = new TimetableRequest();
 
         // Set the teacher ID to the current authenticated user's ID
         $timetableRequest->teacherID = Auth::id();
 
-        // Set the timetable ID from the request
-        $timetableRequest->timetableID = $timetableID;
+        // Set the timetable ID (not the entire timetable instance)
+        $timetableRequest->timetableID = $request->input('timetableID');
 
         // Set the request details from the validated data
         $timetableRequest->request_day = $validated['day'];
@@ -343,7 +339,7 @@ class ManageTimetableController extends Controller
 
         // Save the new request to the database
         $timetableRequest->save();
-
+    
         // Redirect to the timetable list page with a success message
         return redirect()->route('manage.timetable.list')->with('success', 'Timetable request created successfully!');
     }

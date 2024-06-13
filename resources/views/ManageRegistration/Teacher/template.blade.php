@@ -49,7 +49,7 @@
                                 role="tab" aria-controls="pills-contact" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab"
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}"
                                 role="tab" aria-controls="pills-profile" aria-selected="false">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
