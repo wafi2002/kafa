@@ -27,7 +27,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>IC Number</th>
                 <th>Name</th>
                 <th>Year</th>
                 <th class="text-end">Actions</th> {{-- Actions column --}}
@@ -36,12 +36,12 @@
         <tbody>
             @foreach($students as $student) {{-- Loop through each student --}}
             <tr style="background-color: #808080; border: 1px solid #000;">
-                <td>{{ $student->id }}</td>
+                <td>{{ $student->studentIC}}</td>
                 <td>{{ $student->studentName }}</td>
                 <td>{{ $student->studentYear }}</td>
                 <td class="text-end">
                     {{-- Action button to view student details --}}
-                    <a href="{{ route('parents.view', $student->id) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('parents.view', $student->studentIC) }}" class="btn btn-info">View</a>
                 </td>
             </tr>
             @endforeach

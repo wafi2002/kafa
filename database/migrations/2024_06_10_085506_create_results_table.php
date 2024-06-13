@@ -15,8 +15,8 @@ class CreateResultsTable extends Migration
             $table->id();
             $table->string('studentIC');
             $table->foreign('studentIC')->references('studentIC')->on('students')->onDelete('cascade');
-            $table->string('studentName');
-            $table->string('subjectName');
+            $table->unsignedBigInteger('subject_id'); // Add subject_id column
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade'); // Add foreign key constraint
             $table->integer('resultMark');
             $table->string('grade');
             $table->timestamps();

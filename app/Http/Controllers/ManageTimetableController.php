@@ -20,15 +20,15 @@ class ManageTimetableController extends Controller
         // Get the authenticated user and their role
         $user = Auth::user();
         $role = $user->role;
-    
+
         // Get the search term and year from the request
         $searchTerm = $request->input('search');
         $year = $request->input('year');
-    
+
         // Fetch timetables based on the user's role, search term, and year
         if ($role == 'Teacher') {
             $timetables = Timetable::with('user')
-                ->where('userID', $user->id)
+                ->where('user_id', $user->id)
                 ->when($searchTerm, function ($query) use ($searchTerm) {
                     return $query->where('timetable_classname', 'like', '%'. $searchTerm. '%');
                 })
@@ -56,7 +56,7 @@ class ManageTimetableController extends Controller
             // Handle the case where the role is neither Teacher nor Parent
             abort(403, 'Unauthorized action.');
         }
-    
+
         // Return the appropriate view based on the user's role
         if ($role == 'Teacher') {
             return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
@@ -107,7 +107,7 @@ class ManageTimetableController extends Controller
 
         // Create the timetable
         $timetable = new Timetable();
-        $timetable->userID = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
+        $timetable->user_id = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
         $timetable->timetable_classname = $request->input('class_name');
         $timetable->timetable_year = now()->year; // Set the current year as the timetable_year
 
@@ -133,20 +133,20 @@ class ManageTimetableController extends Controller
     public function display(string $id)
     {
         // Get the authenticated user
-        $user = Auth::user(); 
+        $user = Auth::user();
 
         // Get the user's role
-        $role = $user->role; 
+        $role = $user->role;
 
         // Get the authenticated user's ID (assuming you are using Laravel's built-in auth system)
-        $teacherID = $user->id; 
+        $teacherID = $user->id;
 
         // Fetch the specific timetable by ID, including the related user
         $specificTimetable = Timetable::with('user')->where('id', $id)->firstOrFail();
 
         // Fetch all timetables for the authenticated user, including the related user
-        $timetables = Timetable::with('user')->where('userID', $teacherID)->get();
-        
+        $timetables = Timetable::with('user')->where('id', $teacherID)->get();
+
         // Fetch the class name from the specific timetable (assuming classname is a field in the timetables table)
         $timetable_classname = $specificTimetable->timetable_classname;
 
@@ -215,7 +215,7 @@ class ManageTimetableController extends Controller
         $timetable = Timetable::find($id); // Find the timetable record by its ID
 
         // Update the timetable fields
-        $timetable->userID = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
+        $timetable->user_id = $request->input('class_teacher'); // Get the selected userID from the class_teacher select tag
         $timetable->timetable_classname = $request->input('class_name');
         $timetable->timetable_year = now()->year; // Set the current year as the timetable_year
 
@@ -292,7 +292,7 @@ class ManageTimetableController extends Controller
         // Render the parent template timetable view
         return view('ManageTimetable.Parent.ParentTemplate');
     }
-    
+
 
     /**
      * Display the timetable change request form for a teacher.
@@ -317,9 +317,9 @@ class ManageTimetableController extends Controller
     {
         // Validate the request data to ensure it meets the required format
         $validated = $request->validate([
-            'day' => 'equired|string', // Day of the week (e.g. Monday, Tuesday, etc.)
-            'time' => 'equired|string', // Time of the day (e.g. 9:00 AM, 2:00 PM, etc.)
-            'ubject' => 'equired|string', // Subject of the timetable request (e.g. Math, English, etc.)
+            'day' => 'required|string', // Day of the week (e.g. Monday, Tuesday, etc.)
+            'time' => 'required|string', // Time of the day (e.g. 9:00 AM, 2:00 PM, etc.)
+            'subject' => 'required|string', // Subject of the timetable request (e.g. Math, English, etc.)
             'comment' => 'nullable|string', // Optional comment or reason for the request
         ]);
 
@@ -356,7 +356,7 @@ class ManageTimetableController extends Controller
     public function displayRequestList(Request $request)
     {
         // Retrieve a list of timetables that have at least one pending change request
-        $timetables = Timetable::whereHas('timetableRequests')->get();
+        $timetables = Timetable::whereHas('timetableRequest')->get();
 
         // Render the timetable change request list view, passing the list of timetables
         return view('ManageTimetable.KAFAAdmin.TimetableChangeRequestList', compact('timetables'));

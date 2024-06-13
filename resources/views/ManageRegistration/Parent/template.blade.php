@@ -36,13 +36,13 @@
                             <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('Parent.activities.search') }}" role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="pills-result-tab" href="{{ route('parents.search') }}" role="tab" aria-controls="pills-result" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}">Timetable</a>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}" role="tab" aria-controls="pills-result" aria-selected="false">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="pills-payment-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-payment" aria-selected="false">Payment</a>

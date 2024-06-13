@@ -2,24 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TimetableRequest extends Model
 {
-    use HasFactory;
+    protected $table = 'timetable_request';
 
-    public function teacher()
-    {
-        return $this->belongsTo(User::class, 'teacherID', 'id');
-    }
+    protected $primaryKey = 'requestID';
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'teacherID', 'id');
-    }
-    
-    public $timestamps = false;
+    protected $keyType = 'string';
+
+    public $timestamps = true;
 
     protected $fillable = [
         'teacherID',
@@ -28,20 +21,14 @@ class TimetableRequest extends Model
         'request_subject',
         'request_reason',
     ];
+
+    public function teacher()
+    {
+        return $this->belongsTo(User::class, 'teacherID', 'id');
+    }
+
     public function timetable()
-{
-    return $this->belongsTo(Timetable::class, 'timetableID', 'id');
-}
-// Define the table if it's not the plural form of the model name
-protected $table = 'timetable_requests';
-
-// Specify the primary key
-protected $primaryKey = 'requestID';
-
-// If the primary key is not an auto-incrementing integer
-public $incrementing = false;
-
-// If the primary key is not an integer
-protected $keyType = 'string';
-
+    {
+        return $this->belongsTo(Timetable::class, 'timetableID', 'id');
+    }
 }

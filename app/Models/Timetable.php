@@ -32,13 +32,13 @@ class Timetable extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'userID');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
      * Get the timetable requests associated with the timetable.
      */
-    public function timetableRequests()
+    public function timetableRequest()
     {
         return $this->hasMany(TimetableRequest::class, 'timetableID', 'id');
     }
