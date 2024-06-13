@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->string('studentIC');
+            $table->foreign('studentIC')->references('studentIC')->on('students')->onDelete('cascade');
+            $table->string('studentName');
+            $table->string('subjectName');
             $table->integer('resultMark');
-            // Add any other columns you need for the results table
+            $table->string('grade');
             $table->timestamps();
+
+            // Add foreign key constraint
+
         });
     }
 
@@ -28,4 +33,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('results');
     }
-};
+}
