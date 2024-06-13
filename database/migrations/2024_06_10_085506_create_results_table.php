@@ -13,7 +13,8 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
+            $table->string('studentIC');
+            $table->foreign('studentIC')->references('studentIC')->on('students')->onDelete('cascade');
             $table->string('studentName');
             $table->string('subjectName');
             $table->integer('resultMark');
@@ -21,7 +22,7 @@ class CreateResultsTable extends Migration
             $table->timestamps();
 
             // Add foreign key constraint
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+
         });
     }
 
