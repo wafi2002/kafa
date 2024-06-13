@@ -16,6 +16,41 @@
     {{-- Navbar --}}
     <!--Main Navigation-->
     <header>
+        <!-- Sidebar -->
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-2 custom-pt">
+
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="#"
+                        id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                            height="130" alt="Avatar" loading="lazy" />
+                    </a>
+
+                    <a href="#"
+                        class="list-group-item list-group-item-action py-2 ripple text-center justify-content-between mt-5"
+                        aria-current="true">
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Student Result</span>
+                    </a>
+                    <a href="{{ route('manage.timetable.list') }}" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Timetable</span>
+                    </a>
+                    <a href="{{ route('report.ViewActivityList')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Report</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Fee</span>
+                    </a>
+                    <a href="{{route('KAFAadmin.activities.search')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                        <span>Activity</span></a>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+
         <!-- Navbar -->
         <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
             <!-- Container wrapper -->

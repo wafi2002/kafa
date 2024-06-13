@@ -7,6 +7,16 @@
   </div>
   <div class="card-body d-flex justify-content-center align-items-center">
       <div style="width: 100%;">
+        <div class="d-flex justify-content-end mb-3">
+            <form method="GET" action="{{ route('manage.timetable.list') }}" class="mb-3">
+              <div class="input-group">
+                  <input type="text" name="search" class="form-control" placeholder="Search by Class Name">
+                  <div class="input-group-append">
+                      <button type="submit" class="btn btn-outline-secondary">Search</button>
+                  </div>
+              </div>
+            </form>
+          </div>
         <table class="table" style="width: 100%; border-collapse: collapse;">
             <thead class="thead-dark" style="background-color: #343a40; color: white;">
                 <tr>

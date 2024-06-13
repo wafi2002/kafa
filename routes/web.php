@@ -135,4 +135,4 @@ Route::get('/manage/timetable/req/{timetable}', ManageTimetableController::class
 Route::post('/manage/timetable/req', ManageTimetableController::class . '@storeRequest')->name('manage.timetable.list.reqrecord'); // Store a new timetable request
 Route::get('/request/timetable/lists', ManageTimetableController::class . '@displayRequestList')->name('manage.timetable.list.request'); // Display list of timetable requests
 Route::get('/manage/timetable/request/{id}', ManageTimetableController::class . '@displayRequest')->name('manage.timetable.list.showrequest'); // Display a specific timetable request
-Route::delete('manage/timetable/request/delete/{requestID}', ManageTimetableController::class . '@deleteRequest')->name('manage.timetable.requestlist.delete'); // Delete a timetable request
+Route::delete('manage/timetable/request/delete/{requestID}', ManageTimetableController::class .'@deleteRequest')->name('manage.timetable.requestlist.delete'); // Delete a timetable request
