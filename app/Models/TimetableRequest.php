@@ -22,7 +22,7 @@ class TimetableRequest extends Model
         'request_reason',
     ];
 
-    public function teacher()
+    public function user()
     {
         return $this->belongsTo(User::class, 'teacherID', 'id');
     }
