@@ -28,7 +28,7 @@ class ManageTimetableController extends Controller
         // Fetch timetables based on the user's role, search term, and year
         if ($role == 'Teacher') {
             $timetables = Timetable::with('user')
-                ->where('user_id', $user->id)
+                ->where('userID', $user->id)
                 ->when($searchTerm, function ($query) use ($searchTerm) {
                     return $query->where('timetable_classname', 'like', '%'. $searchTerm. '%');
                 })
