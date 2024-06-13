@@ -20,15 +20,15 @@ class ManageTimetableController extends Controller
         // Get the authenticated user and their role
         $user = Auth::user();
         $role = $user->role;
-    
+
         // Get the search term and year from the request
         $searchTerm = $request->input('search');
         $year = $request->input('year');
-    
+
         // Fetch timetables based on the user's role, search term, and year
         if ($role == 'Teacher') {
-            $timetables = Timetable::with('user')
-                ->where('userID', $user->id)
+            $timetables = Timetable::with('users')
+                ->where('id', $user->id)
                 ->when($searchTerm, function ($query) use ($searchTerm) {
                     return $query->where('timetable_classname', 'like', '%'. $searchTerm. '%');
                 })
@@ -56,7 +56,7 @@ class ManageTimetableController extends Controller
             // Handle the case where the role is neither Teacher nor Parent
             abort(403, 'Unauthorized action.');
         }
-    
+
         // Return the appropriate view based on the user's role
         if ($role == 'Teacher') {
             return view('ManageTimetable.Teacher.TimetableList', compact('timetables'));
@@ -133,20 +133,20 @@ class ManageTimetableController extends Controller
     public function display(string $id)
     {
         // Get the authenticated user
-        $user = Auth::user(); 
+        $user = Auth::user();
 
         // Get the user's role
-        $role = $user->role; 
+        $role = $user->role;
 
         // Get the authenticated user's ID (assuming you are using Laravel's built-in auth system)
-        $teacherID = $user->id; 
+        $teacherID = $user->id;
 
         // Fetch the specific timetable by ID, including the related user
         $specificTimetable = Timetable::with('user')->where('id', $id)->firstOrFail();
 
         // Fetch all timetables for the authenticated user, including the related user
         $timetables = Timetable::with('user')->where('userID', $teacherID)->get();
-        
+
         // Fetch the class name from the specific timetable (assuming classname is a field in the timetables table)
         $timetable_classname = $specificTimetable->timetable_classname;
 
@@ -292,7 +292,7 @@ class ManageTimetableController extends Controller
         // Render the parent template timetable view
         return view('ManageTimetable.Parent.ParentTemplate');
     }
-    
+
 
     /**
      * Display the timetable change request form for a teacher.
@@ -322,7 +322,7 @@ class ManageTimetableController extends Controller
             'subject' => 'required|string', // Subject of the timetable request (e.g. Math, English, etc.)
             'comment' => 'nullable|string', // Optional comment or reason for the request
         ]);
-    
+
         $timetableRequest = new TimetableRequest();
 
         // Set the teacher ID to the current authenticated user's ID
@@ -339,7 +339,7 @@ class ManageTimetableController extends Controller
 
         // Save the new request to the database
         $timetableRequest->save();
-    
+
         // Redirect to the timetable list page with a success message
         return redirect()->route('manage.timetable.list')->with('success', 'Timetable request created successfully!');
     }
