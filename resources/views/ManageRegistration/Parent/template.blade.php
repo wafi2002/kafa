@@ -44,9 +44,7 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}" role="tab" aria-controls="pills-result" aria-selected="false">Timetable</a>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-payment-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-payment" aria-selected="false">Payment</a>
-                        </li>
+                        
                     </ul>
                 </div>
 

@@ -1,5 +1,3 @@
-<!-- resources/views/ManageKAFAactivity/Teacher/ViewActivityDetail.blade.php -->
-
 @extends('ManageRegistration.Teacher.template')
 
 @section('content')
@@ -10,9 +8,9 @@
                     <h5 class="card-title"><strong>{{ $activity->activityName }}</strong></h5>
                     <h6 class="card-subtitle text-muted"><strong>Date:</strong> {{ $activity->activityDate }}</h6>
                 </div>
-                <p class="mt-3">{{ $activity->activityDescription }}</p>
-                <p class="mt-3">{{ $activity->activityTentative }}</p>
-                <p class="mt-3">{{ $activity->activityTime }}</p>
+                <p class="mt-3"><strong>Description: </strong>{{ $activity->activityDescription }}</p>
+                <p class="mt-3"><strong>Tentative: </strong>{{ $activity->activityTentative }}</p>
+                <p class="mt-3"><strong>Time: </strong>{{ $activity->activityTime }}</p>
 
                 <!-- Edit Button -->
                 <a href="{{ route('activities.edit', $activity->id) }}" class="btn btn-primary">Edit</a>
@@ -23,7 +21,6 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
-
             </div>
         </div>
 

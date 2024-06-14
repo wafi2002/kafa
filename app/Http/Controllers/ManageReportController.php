@@ -15,6 +15,9 @@ class ManageReportController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * This method retrieves all activities with their associated post-mortems
+     * and returns the view for the KAFA Admin to see the list of activities.
      */
     public function index()
     {
@@ -23,6 +26,12 @@ class ManageReportController extends Controller
         return view('ManageReportActivity.KAFA Admin.ViewActivityList', compact('activities'));
     }
 
+    /**
+     * Display a listing of the resource for MUIP Admin.
+     *
+     * This method retrieves all activities with their associated post-mortems
+     * and returns the view for the MUIP Admin to see the list of finished activities.
+     */
     public function indexMuip()
     {
         $activities = Activity::with('postMortems')->get();
@@ -33,8 +42,10 @@ class ManageReportController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */
-    public function create($id)
+     *
+     * This method finds a specific activity by its ID and returns the form view
+     * for the KAFA Admin to add a new post-mortem.
+     */    public function create($id)
     {
         //
         $activity = Activity::findOrFail($id);
@@ -43,6 +54,9 @@ class ManageReportController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * This method validates the form data, creates a new post-mortem for the specified activity,
+     * and saves it to the database. It then redirects to the complete post-mortem view with a success message.
      */
     public function store(Request $request, $id)
     {
@@ -73,6 +87,9 @@ class ManageReportController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * This method finds a specific activity by its ID and returns the detail view
+     * for the KAFA Admin to see the activity details.
      */
     public function show(string $id)
     {
@@ -82,6 +99,9 @@ class ManageReportController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * This method finds a specific activity by its ID and checks if it has a finished post-mortem.
+     * If so, it returns the form view for editing the post-mortem. Otherwise, it redirects back with an error message.
      */
     public function edit($id)
     {
@@ -105,6 +125,9 @@ class ManageReportController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * This method validates the form data and updates the specified post-mortem in the database.
+     * It then redirects to the complete post-mortem view with a success message.
      */
     public function update(Request $request, $id, $postMortemId)
     {
@@ -122,15 +145,14 @@ class ManageReportController extends Controller
         return redirect()->route('report.ViewCompletePostMortem', $id)->with('success', 'Post-Mortem updated successfully');
     }
 
+
+
     /**
-     * Remove the specified resource from storage.
+     * Display the complete post-mortem for a specific activity.
+     *
+     * This method finds a specific activity by its ID along with its post-mortems
+     * and returns the view for the KAFA Admin to see the complete post-mortem.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-
     public function showPostMortem($id)
     {
         $activity = Activity::with('postMortems')->findOrFail($id);
@@ -138,6 +160,12 @@ class ManageReportController extends Controller
         return view('ManageReportActivity.KAFA Admin.ViewCompletePostMortem', compact('activity'));
     }
 
+    /**
+     * Display the complete post-mortem for a specific activity for MUIP Admin.
+     *
+     * This method finds a specific activity by its ID along with its post-mortems
+     * and returns the view for the MUIP Admin to see the complete post-mortem.
+     */
     public function showPostMortemMuip($id)
     {
         $activity = Activity::with('postMortems')->findOrFail($id);
@@ -145,6 +173,12 @@ class ManageReportController extends Controller
         return view('ManageReportActivity.MUIP Admin.ViewCompletePostMortem', compact('activity'));
     }
 
+    /**
+     * Display the years of students.
+     *
+     * This method retrieves distinct student years and returns the view for the MUIP Admin
+     * to select an academic year.
+     */
     public function showYears()
     {
 
@@ -153,6 +187,12 @@ class ManageReportController extends Controller
         return view('ManageReportActivity.MUIP Admin.ViewAcademicLevelOption', compact('years'));
     }
 
+    /**
+     * Display the list of students for a specific year.
+     *
+     * This method retrieves students by their academic year and returns the view
+     * for the MUIP Admin to see the list of students for that year.
+     */
     public function showStudentsByYear($year)
     {
         $students = Student::where('studentYear', $year)->get();
@@ -161,6 +201,12 @@ class ManageReportController extends Controller
 
 
 
+    /**
+     * Display the academic performance of a specific student.
+     *
+     * This method retrieves the results for a specific student and returns the view
+     * for the MUIP Admin to see the academic performance of that student.
+     */
     public function viewAcademicPerformance($studentIC)
     {
         // Assuming you want to get results for a specific student

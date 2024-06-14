@@ -150,6 +150,10 @@ class ManageTimetableController extends Controller
         // Fetch the class name from the specific timetable (assuming classname is a field in the timetables table)
         $timetable_classname = $specificTimetable->timetable_classname;
 
+        // Retrieve all users who have the role of 'Teacher'
+        // This is likely to populate a dropdown or selection list in the edit form
+        $teachers = User::where('role', 'Teacher')->get();
+        
         // Based on the user's role, return the appropriate view
         if ($role == 'Teacher') {
             // Return the view for teachers

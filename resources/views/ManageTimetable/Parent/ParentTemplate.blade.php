@@ -38,14 +38,10 @@
                             <a class="nav-link" id="pills-profile-tab" href="{{ route('parent.dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Activity</button>
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('Parent.activities.search') }}" role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Result</button>
+                            <a class="nav-link" id="pills-result-tab" href="{{ route('parents.search') }}" role="tab" aria-controls="pills-result" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <div class="dropdown">
@@ -58,11 +54,6 @@
                                     <a href="{{ route('manage.timetable.list', ['year' => 5]) }}">Year 5</a>
                                 </div>
                               </div>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-contact" type="button" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Report</button>
                         </li>
                     </ul>
                 </div>
