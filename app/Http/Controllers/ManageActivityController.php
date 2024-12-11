@@ -11,8 +11,7 @@ class ManageActivityController extends Controller
 
     public function index()
     {
-        //
-        return view('ManageKafaActivity.Teacher.ViewActivity1', compact('activities'));
+        
     }
 
     /**
