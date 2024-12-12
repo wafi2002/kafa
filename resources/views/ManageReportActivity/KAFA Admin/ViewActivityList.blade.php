@@ -3,11 +3,15 @@
 @section('content')
     <!-- Search Bar -->
     <div class="input-group mb-3">
-        <input type="text" class="form-control" id="searchInput" placeholder="Search..." aria-label="Search"
-            aria-describedby="basic-addon2">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary btn-custom" type="button" onclick="searchActivity()">Search</button>
         </div>
+    </div>
+
+    <!-- Alert for Activity Not Available -->
+    <div class="alert alert-danger mt-3" role="alert" id="notFoundAlert" style="display: none;">
+        Activity not found.
     </div>
 
     <!-- List of Activities -->
@@ -19,25 +23,16 @@
                 @else
                     window.location='{{ route('report.ViewActivityDetail', $activity->id) }}' @endif">
                 <span>{{ $activity->activityName }}</span>
-                <span
-                    class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">{{ $activity->status }}</span>
+                <span class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">{{ $activity->status }}</span>
             </button>
         @endforeach
-    </div>
-
-    <!-- Alert for Activity Not Available -->
-    <div class="alert alert-danger mt-3" role="alert" id="notFoundAlert" style="display: none;">
-        Activity not found.
     </div>
 
     <style>
         .badge-custom {
             border: 1px solid #000;
-            /* Change the border color as needed */
             border-radius: 5px;
-            /* Adjust the border-radius as needed */
             padding: 0.25em 0.75em;
-            /* Adjust padding for better spacing */
         }
 
         .btn-custom {
@@ -45,7 +40,6 @@
             border-color: yellow;
             color: black;
             margin-left: 5px;
-            /* Adjust the margin to create a gap */
         }
 
         .input-group-append {
@@ -64,6 +58,7 @@
 
             for (var i = 0; i < activityButtons.length; i++) {
                 var activityName = activityButtons[i].getElementsByTagName('span')[0].textContent.toLowerCase();
+
                 if (activityName.includes(searchInput)) {
                     activityButtons[i].style.display = "block";
                     activityFound = true;
@@ -78,5 +73,11 @@
                 document.getElementById('notFoundAlert').style.display = "none";
             }
         }
+
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchActivity();
+            }
+        });
     </script>
 @endsection

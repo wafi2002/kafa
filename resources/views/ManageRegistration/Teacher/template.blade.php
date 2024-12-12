@@ -36,8 +36,7 @@
                 <div class="d-flex justify-content-center flex-grow-1">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="pills-home-tab"
-                                href="{{ route('report.ViewFinishActivityList') }}" role="tab"
+                            <a class="nav-link active" id="pills-home-tab" role="tab"
                                 aria-controls="pills-home" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -45,11 +44,11 @@
                                 role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-contact-tab"
-                                role="tab" aria-controls="pills-contact" aria-selected="false">Result</a>
+                            <a class="nav-link" id="pills-contact-tab" href="{{ route('students.searchForm') }}" role="tab"
+                                aria-controls="pills-contact" aria-selected="false">Result</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab"
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('manage.timetable.list') }}"
                                 role="tab" aria-controls="pills-profile" aria-selected="false">Timetable</a>
                         </li>
                         <li class="nav-item" role="presentation">
