@@ -38,13 +38,13 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(['email' => $input['email'], 'password' => $input['password'], 'role' => $input['role']])) {
-            if (auth()->user()->role == 'Kafa') {
+            if (auth()->user()->role == 'kafa') {
                 return redirect()->route('kafa.dashboard');
-            } elseif (auth()->user()->role == 'Muip') {
+            } elseif (auth()->user()->role == 'muip') {
                 return redirect()->route('muip.dashboard');
-            } elseif (auth()->user()->role == 'Parent') {
+            } elseif (auth()->user()->role == 'parent') {
                 return redirect()->route('parent.dashboard');
-            } elseif (auth()->user()->role == 'Teacher') {
+            } elseif (auth()->user()->role == 'teacher') {
                 return redirect()->route('teacher.dashboard');
             } else {
                 return redirect()->route('home');

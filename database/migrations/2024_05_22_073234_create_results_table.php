@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subjectID')->constrained()->onDelete('cascade');
-            $table->foreignId('studentIC')->constrained()->onDelete('cascade');
-            $table->integer('resultMark');
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+            $table->string('student_ic',12);
+            $table->decimal('result_mark',5,2)->default(0.00);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

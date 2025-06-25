@@ -1,6 +1,4 @@
-@extends('ManageRegistration.Teacher.template')
-
-@section('content')
+<x-template-layout title="Dashboard" bg_color="#fff">
     <div class="card">
         <div class="card-header">
             Welcome to KAFA
@@ -11,5 +9,4 @@
             </div>
         </div>
     </div>
-@endsection
-
+</x-template-layout>

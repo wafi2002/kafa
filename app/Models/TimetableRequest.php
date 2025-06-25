@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TimetableRequest extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'timetable_request';
 
     protected $primaryKey = 'requestID';

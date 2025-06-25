@@ -12,15 +12,7 @@ class ManageRegistrationController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role == 'Kafa') {
-            return view('ManageRegistration.Kafa Admin.dashboard');
-        } elseif (auth()->user()->role == 'Muip') {
-            return view('ManageRegistration.Muip Admin.dashboard');
-        } elseif (auth()->user()->role == 'Parent') {
-            return view('ManageRegistration.Parent.dashboard');
-        } elseif (auth()->user()->role == 'Teacher') {
-            return view('ManageRegistration.Teacher.dashboard');
-        }
+    
     }
 
     /**

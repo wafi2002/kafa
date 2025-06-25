@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Result extends Model
 {
-    use HasFactory;
-
+    use HasFactory,SoftDeletes;
+    
     protected $fillable = [
         'studentIC',
-        'subject_id', // Assuming 'subject_id' is the foreign key column for the subject relationship
+        'subject_id',
         'resultMark',
         'grade',
     ];

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('timetable_request', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('timetableID')->constrained('timetables')->onDelete('cascade');
-            $table->foreignId('teacherID')->constrained('users')->onDelete('cascade');
+            $table->foreignId('timetable_id')->constrained()->onDelete('cascade');
+            $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
             $table->string('request_day');
             $table->string('request_time');
             $table->string('request_subject');

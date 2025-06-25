@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('timetable_requests', function (Blueprint $table) {
-            //
+        Schema::create('muip_admins', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('gender');
+            $table->string('address');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('timetable_requests', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('muip_admins');
     }
 };
+

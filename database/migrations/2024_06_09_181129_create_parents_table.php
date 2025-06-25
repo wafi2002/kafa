@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
-            $table->string('parentIC');
+            $table->string('parent_ic');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('phoneNo');
+            $table->string('phone_no');
             $table->string('address');
             $table->string('relation');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

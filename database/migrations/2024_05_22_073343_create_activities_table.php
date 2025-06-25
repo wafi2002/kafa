@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('activityName');
-            $table->string('activityDescription');
-            $table->date('activityDate');
-            $table->time('activityTime');
-            $table->string('activityTentative');
+            $table->string('activity_name');
+            $table->string('activity_description');
+            $table->date('activity_date');
+            $table->time('activity_time');
+            $table->string('activity_tentative');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

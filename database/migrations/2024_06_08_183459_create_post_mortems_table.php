@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('post_mortems', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('activity_id'); // Foreign key column
-            $table->string('postDescription');
-            $table->date('postDate');
-            $table->string('postStatus');
+            $table->foreignId('activity_id')->constrained()->onDelete('cascade');
+            $table->string('post_description');
+            $table->date('post_date');
+            $table->string('post_status');
+            $table->softDeletes();
             $table->timestamps();
 
-            // Define the foreign key constraint with cascade delete
-            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
         });
     }
 

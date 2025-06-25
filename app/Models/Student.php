@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory,SoftDeletes;
 
     protected $primaryKey = 'studentIC'; // Specify the primary key column
     protected $keyType = 'string'; // Specify the primary key type as string
